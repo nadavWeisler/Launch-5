@@ -1,0 +1,23 @@
+{
+  "name": "launch5",
+  "version": "1.0.0",
+  "description": "<<<<<<< HEAD\r # My project's README\r =======\r This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "createMessage.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/NadavWeisler/Launch5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/NadavWeisler/Launch5/issues"
+  },
+  "homepage": "https://gitlab.com/NadavWeisler/Launch5#README"
+}

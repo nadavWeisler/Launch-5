@@ -1,0 +1,12 @@
+{
+    "test": {
+        "PORT": 3001,
+        "MONGODB_URI": "mongodb://localhost:27017/winItDBTest",
+        "JWT_SECRET": "herzog"
+    },
+    "development": {
+        "PORT": 3001,
+        "MONGODB_URI": "mongodb://localhost:27017/winItDB",
+        "JWT_SECRET": "herzogTest"
+    }
+}

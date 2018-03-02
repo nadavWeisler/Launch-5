@@ -1,9 +1,0 @@
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\bin\Launch5.dll.config
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\bin\Launch5.dll
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\bin\Launch5.pdb
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\obj\Debug\Launch5.csprojResolveAssemblyReference.cache
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\obj\Debug\Launch5.csproj.CoreCompileInputs.cache
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\obj\Debug\Launch5.dll
-C:\Users\Nadav\Desktop\Launch5\Launch5\Launch5\obj\Debug\Launch5.pdb
