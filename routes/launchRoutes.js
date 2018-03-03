@@ -34,8 +34,8 @@ module.exports = function(app) {
                 console.log("Launch does not exist");
                 return res.status(404).send("Launch does not exist");
             }
-            let mailSend = CreateMessage.CreateEmail(req.body.sender, launch.emailSubject, launch.emailBody,
-                req.body.mailType);
+            let senders = launch.GetLaunchEmailsAsString(launch.emails);
+            let mailSend = CreateMessage.CreateEmail(senders, launch.emailSubject, launch.emailBody, req.body.mailType);
             if(mailSend){
                 res.status(200).send(mailSend);
             } else {
@@ -45,8 +45,9 @@ module.exports = function(app) {
             console.log("Error: " + e);
         });
     });
+    
 
-    //Post launch
+     //Post launch
     app.post('/launch', (req, res) => {
         console.log(req.body);
         var launch = new Launch(req.body);
