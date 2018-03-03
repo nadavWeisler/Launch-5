@@ -14,9 +14,6 @@ const keys = require('./config/keys');
 
 //Connect to mongoDB
 const mongoose = require('mongoose');
-
-//mongoose.Promise = global.Promise;
-console.log(keys.MONGODB_URI);
 mongoose.connect(keys.MONGODB_URI);
 
 //Initilize new express server
@@ -39,8 +36,9 @@ app.use(passport.session());
 //Use JSON in app
 app.use(bodyParser.json());
 
-//Electorize modules
-require('./models/encouragement');
+//launch modules
+require('./models/launch');
+require('./routes/launchRoutes')(app);
 
 //Google OAuth
 require('./models/user');

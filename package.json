@@ -19,5 +19,14 @@
   "bugs": {
     "url": "https://gitlab.com/NadavWeisler/Launch5/issues"
   },
-  "homepage": "https://gitlab.com/NadavWeisler/Launch5#README"
+  "homepage": "https://gitlab.com/NadavWeisler/Launch5#README",
+  "dependencies": {
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.2",
+    "lodash": "^4.17.5",
+    "mongoose": "^5.0.7",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "socket.io": "^2.0.4"
+  }
 }
