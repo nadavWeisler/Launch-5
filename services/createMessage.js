@@ -3,9 +3,9 @@ class CreateMessage {
                 return 'sms://' + phoneNumber + 
                       '?body=' + text;
         }
-        static CreateWhatsapp(text){
-                return 'whatsapp://send' + 
-                        '?text=' + text; 
+        static CreateWhatsapp(phoneNumber, text){
+                return 'https://api.whatsapp.com/send?phone=' + phoneNumber + 
+                        '&text=' + text;
         }
         static  CreateEmail(sender, subject, body, type){
                 if (type == 0){

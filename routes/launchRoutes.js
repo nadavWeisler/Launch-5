@@ -34,7 +34,7 @@ module.exports = function(app) {
                 console.log("Launch does not exist");
                 return res.status(404).send("Launch does not exist");
             }
-            let senders = launch.GetLaunchEmailsAsString(launch.emails);
+            let senders = launch.GetLaunchListAsString(launch.emails);
             let mailSend = CreateMessage.CreateEmail(senders, launch.emailSubject, launch.emailBody, req.body.mailType);
             if(mailSend){
                 res.status(200).send(mailSend);
@@ -45,7 +45,44 @@ module.exports = function(app) {
             console.log("Error: " + e);
         });
     });
-    
+
+    //Send email from launch by launch name
+    app.post('/launch/sms/:launchName', (req, res) => {
+        Launch.findOne({'name': req.params.launchName}).then((launch) =>{
+            if(!launch){
+                console.log("Launch does not exist");
+                return res.status(404).send("Launch does not exist");
+            }
+            let senders = launch.GetLaunchListAsString(launch.phoneNumbers);
+            let smsSend = CreateMessage.CreateSms(senders, launch.emailBody);
+            if(smsSend){
+                res.status(200).send(smsSend);
+            } else {
+                res.status(404).send("sms problem");
+            }
+        }).catch((e) => {
+            console.log("Error: " + e);
+        });
+    });
+
+    //Send email from launch by launch name
+    app.post('/launch/whatsapp/:launchName', (req, res) => {
+        Launch.findOne({'name': req.params.launchName}).then((launch) =>{
+            if(!launch){
+                console.log("Launch does not exist");
+                return res.status(404).send("Launch does not exist");
+            }
+            let senders = launch.GetLaunchListAsString(launch.phoneNumbers);
+            let smsSend = CreateMessage.CreateWhatsapp(senders, launch.emailBody);
+            if(smsSend){
+                res.status(200).send(smsSend);
+            } else {
+                res.status(404).send("sms problem");
+            }
+        }).catch((e) => {
+            console.log("Error: " + e);
+        });
+    });
 
      //Post launch
     app.post('/launch', (req, res) => {

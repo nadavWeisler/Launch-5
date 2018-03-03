@@ -15,16 +15,15 @@ var LaunchSchema = new mongoose.Schema({
     messageBody: String //SMS Message content
 });
 
-LaunchSchema.methods.GetLaunchEmailsAsString = (emails, cb) => {
-    if (!emails || emails.length == 0) {
+LaunchSchema.methods.GetLaunchListAsString = (lst, cb) => {
+    if (!lst || lst.length == 0) {
         return '';
     }
-    let senders = emails[0];   
-    console.log(senders); 
-    for(var i = 1; i < emails.length; i++){
-        senders += emails[i];
+    let senders = lst[0];   
+    for(var i = 1; i < lst.length; i++){
+        senders +=  (';' + lst[i]);
     }
-    sleep(1000);
+    sleep(100);
     return senders;
 }
 
