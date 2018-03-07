@@ -4,23 +4,26 @@ module.exports = function(app) {
     app.get('/auth/google',
         passport.authenticate('google', {
         scope: ['profile', 'email']
-      }));
+    }));
       
     app.get('/auth/google/callback',
-        passport.authenticate('google')
-        );
+        passport.authenticate('google'),
+        (req, res) => {
+            res.redirect('/');
+        }
+    );
 
     app.get('/api/logout',
-        function(req, res) {
+        (req, res) => {
             req.logout();
-            res.send(req.user);
+            res.redirect('/');
         }
-        );
+    );
 
     app.get('/api/current_user',
         function(req, res) {
             res.send(req.user);
         }
-        );
+    );
 };
 
