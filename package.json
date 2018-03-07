@@ -2,7 +2,7 @@
   "name": "launch5",
   "version": "1.0.0",
   "description": "<<<<<<< HEAD\r # My project's README\r =======\r This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
-  "main": "createMessage.js",
+  "main": "server.js",
   "directories": {
     "test": "tests"
   },
