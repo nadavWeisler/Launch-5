@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+const {mongoose} = require('./../DB/mongoose');
 //Schema definition
 var UserSchema = new mongoose.Schema({
     googleAuthId: String,

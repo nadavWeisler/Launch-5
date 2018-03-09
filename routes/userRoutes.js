@@ -1,11 +1,10 @@
-const {Person} = require('./../models/person');
 const {mongoose} = require('./../DB/mongoose');
 const {User} = require('./../models/user')
 
 //Users:
 module.exports = function(app) {
     //POST /users
-    app.post('/users', (req, res) => {
+    app.post('/api/users', (req, res) => {
       var user = new User({
         password: req.body.password
       });
@@ -32,7 +31,7 @@ module.exports = function(app) {
       });
   
     //GET /users
-    app.get('/users', (req, res) => {
+    app.get('/api/users', (req, res) => {
         User.find().then(
         (users) => {
         res.send({users});

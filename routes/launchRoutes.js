@@ -1,94 +1,22 @@
 const {mongoose} = require('./../DB/mongoose');
 const {Launch} = require('../models/launch');
+const requireLogin = require('../middlewares/requireLogin');
+const requireCredits = require('../middlewares/requireCredits');
 const CreateMessage = require('../services/createMessage');
 
 module.exports = function(app) {
-    //Get all launches
-    app.get('/launches', (req,res)=> {
-        Launch.find().then(
-            (launch) => {
-                res.status(200).send(launch);
-            }, (e) => {
-                res.status(400).send(e);
-            }
-        );
-    });
-
-    //Get launch by launch name
-    app.get('/launch/:launchName', (req,res)=> {
-        Launch.findOne({'name': req.params.launchName}).then((launch) =>{
-            if(!launch){
-                console.log("Launch does not exist");
-                return res.status(404).send("Launch does not exist");
-            }
-            res.status(200).send(launch);
-        }).catch((e) => {
-            console.log("Error: " + e);
-        });
-    });
-
-    //Send email from launch by launch name
-    app.post('/launch/email/:launchName', (req, res) => {
-        Launch.findOne({'name': req.params.launchName}).then((launch) =>{
-            if(!launch){
-                console.log("Launch does not exist");
-                return res.status(404).send("Launch does not exist");
-            }
-            let senders = launch.GetLaunchListAsString(launch.emails);
-            let mailSend = CreateMessage.CreateEmail(senders, launch.emailSubject, launch.emailBody, req.body.mailType);
-            if(mailSend){
-                res.status(200).send(mailSend);
-            } else {
-                res.status(404).send("Email problem");
-            }
-        }).catch((e) => {
-            console.log("Error: " + e);
-        });
-    });
-
-    //Send email from launch by launch name
-    app.post('/launch/sms/:launchName', (req, res) => {
-        Launch.findOne({'name': req.params.launchName}).then((launch) =>{
-            if(!launch){
-                console.log("Launch does not exist");
-                return res.status(404).send("Launch does not exist");
-            }
-            let senders = launch.GetLaunchListAsString(launch.phoneNumbers);
-            let smsSend = CreateMessage.CreateSms(senders, launch.emailBody);
-            if(smsSend){
-                res.status(200).send(smsSend);
-            } else {
-                res.status(404).send("sms problem");
-            }
-        }).catch((e) => {
-            console.log("Error: " + e);
-        });
-    });
-
-    //Send email from launch by launch name
-    app.post('/launch/whatsapp/:launchName', (req, res) => {
-        Launch.findOne({'name': req.params.launchName}).then((launch) =>{
-            if(!launch){
-                console.log("Launch does not exist");
-                return res.status(404).send("Launch does not exist");
-            }
-            let senders = launch.GetLaunchListAsString(launch.phoneNumbers);
-            let smsSend = CreateMessage.CreateWhatsapp(senders, launch.emailBody);
-            if(smsSend){
-                res.status(200).send(smsSend);
-            } else {
-                res.status(404).send("sms problem");
-            }
-        }).catch((e) => {
-            console.log("Error: " + e);
-        });
-    });
-
      //Post launch
-    app.post('/launch', (req, res) => {
-        console.log(req.body);
-        var launch = new Launch(req.body);
-        Launch.find({"name": launch.name}).then((existingLaunches) => {
+    app.post('/api/launch', requireLogin, requireCredits, (req, res) => {
+        var launch = new Launch();
+        launch.name = req.body.name;
+        launch.smsPath = CreateMessage.CreateSms(req.body.phoneNumber, req.body.textBody);
+        launch.whatsappPath = CreateMessage.CreateWhatsapp(req.body.phoneNumber, req.body.textBody);
+        launch.gmailPath = CreateMessage.CreateEmail(req.body.emailSender, req.body.emailSubject, req.body.emailBody, 0);
+        launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, req.body.emailSubject, req.body.emailBody, 1);
+        launch._user = req.user.id;
+        launch.startDate = Date.now();
+        console.log(launch);
+        Launch.find({"name": launch.name, "_user": launch._user}).then((existingLaunches) => {
             if (existingLaunches.length == 0) {
                 launch.save().then((existingLaunches) => {
                 res.send(existingLaunches);
@@ -98,5 +26,20 @@ module.exports = function(app) {
             else {
               res.send('Launch already exist');}
             });
+    });
+
+    app.get('/api/launch', async (res, req) => {
+        let currentLaunch = await Launch.findOne({name: req.body.name, _user: req.body._user});
+        if(!currentLaunch){
+            res.status(404).send("Launch does not exist");
+        }
+
+        var timeinmilisec = currentLaunch.startDate.getTime() - Date.now().getTime();
+        console.log(timeinmilisec);
+        if(timeinmilisec > 172800000){
+            const removedUser = await Launch.findOneAndRemove({name: currentLaunch.name, _user: currentLaunch._user});
+            res.status(404).send("Launch does not exist");
+        }
+        res,status(200).send(currentLaunch);       
     });
 };

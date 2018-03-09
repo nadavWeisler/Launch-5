@@ -33,17 +33,18 @@ app.use(passport.session());
 //Use JSON in app
 app.use(bodyParser.json());
 
+require('./routes/launchRoutes')(app);
+require('./routes/billingRoutes')(app);
+require('./routes/authRoutes')(app);
+require('./routes/userRoutes')(app);
+
 //launch modules
 require('./models/launch');
-require('./routes/launchRoutes')(app);
+require('./models/user');
 
 //Google OAuth
-require('./models/user');
 require('./services/passport');
-require('./routes/authRoutes')(app);
 
-//Billing routes
-require('./routes/billingRoutes')(app);
 
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('client/build'));

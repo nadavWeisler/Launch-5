@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
-const _ = require('lodash');
+const {Schema} = mongoose;
 var sleep = require('system-sleep');
 
 //Schema definition
 var LaunchSchema = new mongoose.Schema({
     name: String, //Launch name
     picture: String, //Launch picture paths
-    duration: Number, //Launch duration in days
     startDate: Date, //Launch start time
-    emails: [], //email addresses
-    phoneNumbers: [], //phone numbers
-    emailSubject: String, //Email subjects
-    emailBody: String, //Email body
-    messageBody: String //SMS Message content
+    lastResponse: Date,
+    gmailPath: String,
+    gmailCount: {type: Number, default: 0},
+    outlookPath: String,
+    outlookCount: {type: Number, default: 0},
+    smsPath: String,
+    smsCount: {type: Number, default: 0},
+    whatsappPath: String,
+    whatsappCount: {type: Number, default: 0},
+    _user: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 LaunchSchema.methods.GetLaunchListAsString = (lst, cb) => {
