@@ -1,7 +1,7 @@
 //dev.js dont commit it
 module.exports = {
-    googleClientID: '841663533825-p8f1np6v7cutnp1clm4ikbhg701nv3on.apps.googleusercontent.com',
-    googleClientSecret: 'nm_R6rkUIRCfcPOIrykFNqhE',
+    googleClientID: '841663533825-ntkpgu5quv3nagok2gnilmp6397bvdkb.apps.googleusercontent.com',
+    googleClientSecret: 'RA2yIrjI6sCeGdQkdJvggyrZ',
     MONGODB_URI: "mongodb://Nadav:NadavLaunch5@ds151908.mlab.com:51908/launch5_dev",
     PORT: "3001",
     cookieKey: "herzog",

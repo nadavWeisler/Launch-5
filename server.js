@@ -5,8 +5,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSessoin = require('cookie-session');
 const passport = require('passport');
-const _ = require('lodash');
-const socketIO = require('socket.io');
 const http = require('http');
 
 //Consts
@@ -19,7 +17,6 @@ mongoose.connect(keys.MONGODB_URI);
 //Initilize new express server
 var app = express();
 var server = http.createServer(app);
-var io = socketIO(server);
 
 //Use cookies
 app.use(
@@ -45,16 +42,20 @@ require('./models/user');
 require('./services/passport');
 require('./routes/authRoutes')(app);
 
+//Billing routes
+require('./routes/billingRoutes')(app);
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'));
+
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendfile(path.resolve(__dirname,'client', 'build', 'index.html'));
+  })
+}
+
 //Define port
 const port = process.env.PORT || keys.PORT;
-
-io.on('connection', (socket) => {
-  console.log('New user connected');
-
-  socket.on('disconnect', () => {
-    console.log('User was disconnected');
-  });
-});
 
 //Listen to port
 server.listen(port, () => {

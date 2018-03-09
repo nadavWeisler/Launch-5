@@ -1,3 +1,14 @@
 node_modules
 config/config.json
 config/dev.js
+
+# dependencies
+client/node_modules
+# production
+client/build
+build
+
+# misc
+.DS_Store
+client/.env.development
+client/.env.production
