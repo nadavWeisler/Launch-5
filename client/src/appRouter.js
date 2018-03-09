@@ -5,7 +5,6 @@ import * as actions from './actions';
 
 import PageNotFound from './components/pageNotFound';
 import GetLaunch from './components/GetLaunch';
-import CreateLaunch from './components/CreateLaunch';
 import Home from './components/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -22,7 +21,7 @@ class AppRouter extends Component {
     render() {
         return (
             <BrowserRouter>
-            <div className="container" style={{fontFamily:'Arvo'}}>
+            <div className="container" style={{fontFamily:'Assistant'}}>
                 <Header/>   
                 <div className = "app">
                 <Switch  style={{textAlign:'center'}}>
