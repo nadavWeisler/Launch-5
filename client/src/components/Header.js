@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Payments from './Payments';
+import Payments from './Payments'; 
 
 class Header extends Component {
   renderContent(){
@@ -14,6 +14,12 @@ class Header extends Component {
         return (
           [<li key="1"><Payments/></li>,
           <li key="4" style = {{margin: '0 10px'}}>Credits: {this.props.auth.credits}</li>,
+          <li key="5"><NavLink
+                to="/dashborad"
+                activeClassName="selected"
+                className= "nalink"
+                >Dashborad
+            </NavLink></li>,
           <li key="2"><NavLink
               to="/create"
               activeClassName="selected"

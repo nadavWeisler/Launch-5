@@ -6,7 +6,7 @@ const CreateMessage = require('../services/createMessage');
 
 module.exports = function(app) {
      //Post launch
-    app.post('/api/launch', requireLogin, requireCredits, (req, res) => {
+    app.post('/api/launch', requireLogin, requireCredits, async (req, res) => {
         var launch = new Launch();
         launch.name = req.body.name;
         launch.smsPath = CreateMessage.CreateSms(req.body.phoneNumber, req.body.textBody);
@@ -26,8 +26,17 @@ module.exports = function(app) {
             else {
               res.send('Launch already exist');}
             });
-    });
 
+        req.user.credits -= 1;
+        try {
+        const user = await req.user.save();
+        }
+        catch(err) {
+            res.status(422).send(err);
+        }
+        res.send(user);
+    });
+    
     app.get('/api/launch', async (res, req) => {
         let currentLaunch = await Launch.findOne({name: req.body.name, _user: req.body._user});
         if(!currentLaunch){

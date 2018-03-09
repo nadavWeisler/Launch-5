@@ -9,6 +9,8 @@ import CreateLaunch from './components/CreateLaunch';
 import Home from './components/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Dashborad from './components/Dashborad';
+import LaunchNew from './components/Launches//LaunchNew'
 
 // Renders the diffrent routes- being renderd by index.js
 
@@ -25,8 +27,10 @@ class AppRouter extends Component {
                 <div className = "app">
                 <Switch  style={{textAlign:'center'}}>
                     <Route path="/" component= {Home} exact={true} />
-                    <Route path="/create" component= {CreateLaunch} exact={true} />
+                    <Route path="/create" component= {LaunchNew} exact={true} />
                     <Route path="/get" component= {GetLaunch} exact={true} />
+                    <Route path="/dashborad" component= {Dashborad} exact={true} />
+                    <Route path="/new" component= {LaunchNew} exact={true} />
                     <Route component = {PageNotFound} />  
                 </Switch>
                 </div>
