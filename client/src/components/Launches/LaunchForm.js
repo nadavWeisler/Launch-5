@@ -4,19 +4,12 @@ import LaunchField from './LaunchField';
 import _ from 'lodash';
 import { NavLink } from 'react-router-dom';
 import validateEmails from '../../utils/validateEmail';
+import formFields from './formFields';
 
-const FIELDS = [
-    { label: 'Name', name: 'launchName' },
-    { label: 'Phone Number', name: 'phoneNumber' },
-    { label: 'Message body', name: 'phoneText'},
-    { label: 'Email address', name: "emailAddress"},
-    { label: 'Email subject', name: "emailSubject"},
-    { label: 'Email body', name: "emailBody"}
-];
 
 class LaunchForm extends Component {
     renderFields(){
-        return _.map(FIELDS, field => {
+        return _.map(formFields, field => {
             return <Field key={field.name} name={field.name} component={LaunchField} type="text" label={field.label} />
         })
     }
