@@ -7,7 +7,6 @@ import PageNotFound from './components/pageNotFound';
 import GetLaunch from './components/GetLaunch';
 import Home from './components/Home';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import Dashborad from './components/Dashborad';
 import LaunchNew from './components/Launches//LaunchNew'
 
@@ -21,9 +20,9 @@ class AppRouter extends Component {
     render() {
         return (
             <BrowserRouter>
-            <div className="container" style={{fontFamily:'Assistant'}}>
+            <div className="container" style={{fontFamily:'Helvetica'}}>
                 <Header/>   
-                <div className = "app">
+                <div>
                 <Switch  style={{textAlign:'center'}}>
                     <Route path="/" component= {Home} exact={true} />
                     <Route path="/create" component= {LaunchNew} exact={true} />
@@ -33,7 +32,6 @@ class AppRouter extends Component {
                     <Route component = {PageNotFound} />  
                 </Switch>
                 </div>
-                <Footer/> 
             </div>
             </BrowserRouter>
         )};

@@ -22,8 +22,6 @@ class Header extends Component {
             </NavLink></li>,
           <li key="2"><NavLink
               to="/create"
-              activeClassName="selected"
-              className= "nalink"
               >Create Launch
           </NavLink></li>,
         <li key="3"><a href='/api/logout'>Logout</a></li>]);
@@ -33,15 +31,14 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav=wrapper">
+        <div className="nav-wrapper">
           <NavLink
                 className="left brand-logo"
                 to="/"
-                activeClassName="selected"
                 >
                 Launch5
             </NavLink>
-          <ul className="right">
+          <ul className="right hide-on-med-and-down">
             {this.renderContent()}
           </ul>
         </div>

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 class App extends Component {
   render() {
     return (
-      <div className="App" style={{textAlign:'center'}}>
+      <div className="app" style={{textAlign:'center'}}>
         <header className="App-header">
           <h1 className="App-title">Welcome to Launch5</h1>
         </header>
