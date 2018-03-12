@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './actions';
-
 import PageNotFound from './components/pageNotFound';
 import GetLaunch from './components/GetLaunch';
 import Home from './components/Home';
@@ -20,10 +19,10 @@ class AppRouter extends Component {
     render() {
         return (
             <BrowserRouter>
-            <div className="container" style={{fontFamily:'Helvetica'}}>
+            <div style={{fontFamily:'Helvetica'}}>
                 <Header/>   
-                <div>
-                <Switch  style={{textAlign:'center'}}>
+                <div style = {{margin: '20px 0'}}>
+                <Switch style={{textAlign:'center'}}>
                     <Route path="/" component= {Home} exact={true} />
                     <Route path="/create" component= {LaunchNew} exact={true} />
                     <Route path="/get" component= {GetLaunch} exact={true} />

@@ -14,5 +14,3 @@ ReactDOM.render(
     <Provider store={store}><AppRouter/></Provider>, 
     document.getElementById('root')
 );
-
-console.log("Stripe key:", process.env.REACT_APP_STRIPE_KEY);

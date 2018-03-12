@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Payments from './Payments'; 
 
 class Header extends Component {
+  
   renderContent(){
     switch(this.props.auth){
       case null:
@@ -30,10 +31,10 @@ class Header extends Component {
   
   render() {
     return (
-      <nav>
-        <div className="nav-wrapper">
+      <nav className="red">
+        <div className="nav-wrapper container">
           <NavLink
-                className="left brand-logo"
+                className="brand-logo"
                 to="/"
                 >
                 Launch5
@@ -41,6 +42,10 @@ class Header extends Component {
           <ul className="right hide-on-med-and-down">
             {this.renderContent()}
           </ul>
+          <ul id="nav-mobile" className="side-nav">
+            {this.renderContent()}
+          </ul>
+          
         </div>
       </nav>
     );

@@ -1,8 +1,8 @@
 export default [
-    { label: 'Name', name: 'launchName' },
+    { label: 'Name', name: 'name' },
     { label: 'Phone Number', name: 'phoneNumber' },
-    { label: 'Message body', name: 'phoneText'},
-    { label: 'Email address', name: "emailAddress"},
+    { label: 'Message body', name: 'textBody'},
+    { label: 'Email address', name: "emailSender"},
     { label: 'Email subject', name: "emailSubject"},
     { label: 'Email body', name: "emailBody"}
 ];

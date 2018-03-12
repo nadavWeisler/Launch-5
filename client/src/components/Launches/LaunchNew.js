@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LaunchForm from './LaunchForm';
 import LaunchFormReview from './LaunchFormReview';
+import {reduxForm} from 'redux-form';
 
 class LaunchNew extends Component {
   state = {showFormReview: false}
@@ -18,10 +19,13 @@ class LaunchNew extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <br/>
         {this.renderContent()}
       </div>
     )};
 }
 
-export default LaunchNew;
+export default reduxForm({
+  form: 'launchForm'
+})(LaunchNew);

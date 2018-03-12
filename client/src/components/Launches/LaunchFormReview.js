@@ -2,8 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import formFields from './formFields';
 import _ from 'lodash';
+import * as actions from '../../actions';
+import {withRouter} from 'react-router-dom';
 
-const LaunchFormReview = ({onCancel, formValues}) => {
+const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
     const reviewFields = _.map(formFields, field => {
         return (
             <div>
@@ -22,7 +24,8 @@ const LaunchFormReview = ({onCancel, formValues}) => {
                 onClick={onCancel}>
                 Back
             </button>
-            <button className="green btn-flat right white-text">
+            <button onClick={() => submitLaunch(formValues, history)}
+                className="green btn-flat right white-text">
                 Send launch
             </button>
         </div>
@@ -34,4 +37,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps)(LaunchFormReview);
+export default connect(mapStateToProps, actions)(withRouter(LaunchFormReview));

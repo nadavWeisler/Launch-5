@@ -36,7 +36,6 @@ app.use(bodyParser.json());
 require('./routes/launchRoutes')(app);
 require('./routes/billingRoutes')(app);
 require('./routes/authRoutes')(app);
-require('./routes/userRoutes')(app);
 
 //launch modules
 require('./models/launch');

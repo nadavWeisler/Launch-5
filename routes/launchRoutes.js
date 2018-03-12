@@ -13,23 +13,24 @@ module.exports = function(app) {
         launch.whatsappPath = CreateMessage.CreateWhatsapp(req.body.phoneNumber, req.body.textBody);
         launch.gmailPath = CreateMessage.CreateEmail(req.body.emailSender, req.body.emailSubject, req.body.emailBody, 0);
         launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, req.body.emailSubject, req.body.emailBody, 1);
-        launch._user = req.user.id;
+        launch._user = req.user._id;
         launch.startDate = Date.now();
-        console.log(launch);
-        Launch.find({"name": launch.name, "_user": launch._user}).then((existingLaunches) => {
-            if (existingLaunches.length == 0) {
-                launch.save().then((existingLaunches) => {
+        console.log(req.user);
+        const existingLaunches = await Launch.find({"name": launch.name,"_user": launch._user});
+        if (existingLaunches.length == 0) {
+            launch.save().then((existingLaunches) => {
                 res.send(existingLaunches);
-              }, (e) => {
+            }, (e) => {
                 res.status(400).send(e);
-              }); }
-            else {
-              res.send('Launch already exist');}
-            });
+            }); 
+        }
+        else {
+            res.send('Launch already exist');
+        };
 
         req.user.credits -= 1;
         try {
-        const user = await req.user.save();
+            const user = await req.user.save();
         }
         catch(err) {
             res.status(422).send(err);
