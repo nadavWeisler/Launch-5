@@ -16,12 +16,10 @@ class App extends Component {
             </h5>
           </div>
           <div className="row center">
-            <Button className='btn-large waves-effect waves-light red'>
-              <NavLink className="white-text"
-                to='/new'>
-                Create Launch
-              </NavLink>
-            </Button>
+            <NavLink className=" btn-large waves-effect waves-light red white-text"
+              to='/new'>
+              Create Launch
+            </NavLink>
           </div>
           <div class="container">
             <div class="section">

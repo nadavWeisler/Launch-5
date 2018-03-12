@@ -6,7 +6,8 @@ import {reduxForm} from 'redux-form';
 class LaunchNew extends Component {
   state = {showFormReview: false}
 
-  renderContent(){
+  renderContent(){  
+    
     if(this.state.showFormReview){
       return <LaunchFormReview
                 onCancel={() => this.setState({showFormReview: false})}
