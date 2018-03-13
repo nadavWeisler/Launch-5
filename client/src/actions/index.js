@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {FETCH_USER} from './types';
+import {FETCH_USER, FETCH_LAUNCHES} from './types';
 import errors from '../utils/errors';
 
 export const fetchUser = () => async dispatch => {
@@ -21,4 +21,10 @@ export const submitLaunch = (values, history) => async dispatch => {
     catch(error){
         alert(errors.submitFailed);
     }
+}
+
+export const fetchLaunches = () => async dispatch => {
+    const res = await axios.get('api/launch');
+
+    dispatch({type: FETCH_LAUNCHES, payload: res.data});
 }

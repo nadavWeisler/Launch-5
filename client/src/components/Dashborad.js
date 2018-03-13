@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import LaunchList from './Launches/LaunchList'
+
 class Dashborad extends Component {
     render() {
         return (
-            <div>Dashborad
+            <div>
+                <LaunchList/>
                 <div className="fixed-action-btn">
                 <NavLink 
                 to="/create"
