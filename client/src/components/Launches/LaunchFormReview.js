@@ -33,10 +33,7 @@ const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
 };
 
 function mapStateToProps(state){
-    return  { 
-                formValues: state.form.launchForm.values
-            }
+    return { formValues: state.form.launchForm.values }
 }
-
 
 export default connect(mapStateToProps, actions)(withRouter(LaunchFormReview));

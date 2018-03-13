@@ -51,7 +51,6 @@ function validate(values) {
     });
 
     if (!validateEmails(values['emailSender'])){
-
         errors['emailSender'] = 'Invalid email';
     }
   
@@ -60,6 +59,6 @@ function validate(values) {
   
   export default reduxForm({
     validate,
-    form: 'surveyForm',
+    form: 'launchForm',
     destroyOnUnmount: false
   })(LaunchForm);

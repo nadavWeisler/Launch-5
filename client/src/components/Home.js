@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 
 class App extends Component {
   render() {
