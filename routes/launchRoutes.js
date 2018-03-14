@@ -15,25 +15,18 @@ module.exports = function(app) {
         launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, req.body.emailSubject, req.body.emailBody, 1);
         launch._user = req.user.id;
         launch.startDate = Date.now();
-        const existingLaunches = await Launch.find({name: launch.name, user: launch._user});
-        if (existingLaunches.length == 0) {
-            launch.save().then((existingLaunches) => {
-                res.send(existingLaunches);
-            }, (e) => {
-                res.status(400).send(e);
-            }); 
-        }
-        else {
-            res.send('Launch already exist');
+        console.log(launch.name, launch._user);
+        const existingLaunches = await Launch.find({name: launch.name, _user: launch._user});
+        if (existingLaunches.length != 0) {
+            res.status(409).send('Launch already exist');
         };
-
-        req.user.credits -= 1;
+        req.user.credits = req.user.credits - 1;
         try {
             const user = await req.user.save();
-            res.send(user);
+            res.status(200).send(user);
         }
         catch(err) {
-            res.status(422).send(err);
+            res.status(402).send(err);
         }
     });
     
@@ -41,12 +34,11 @@ module.exports = function(app) {
         let userLaunches = await Launch.find({_user: req.user.id});
         
         for(var i = 0; i < userLaunches.length; i++){
-            if((userLaunches[i].startDate.getTime() - Date.now()) >  172800000){
+            if((Date.now() - userLaunches[i].startDate.getTime()) >  172800000){
                 const removedUser = await Launch.findOneAndRemove({name: userLaunches[i].name, _user: userLaunches[i]._user});
             }
         }
 
-        console.log(userLaunches);
         res.send(userLaunches).status(200);       
     });
 };

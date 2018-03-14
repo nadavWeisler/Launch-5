@@ -19,7 +19,7 @@ export const submitLaunch = (values, history) => async dispatch => {
         dispatch({type: FETCH_USER, payload: res.data});
     }
     catch(error){
-        alert(errors.submitFailed);
+        alert('Submit failed, pleas check that you have at least 1 credit and that your launch name is uniqe');
     }
 }
 
