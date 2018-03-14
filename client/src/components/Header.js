@@ -6,6 +6,7 @@ import Payments from './Payments';
 class Header extends Component {
   
   renderContent(){
+    console.log(this.props.auth);
     switch(this.props.auth){
       case null:
         return 'Still deciding';
@@ -14,7 +15,7 @@ class Header extends Component {
       default:
         return (
           [<li key="1"><Payments/></li>,
-          <li key="4" style = {{margin: '0 10px'}}>Credits: {this.props.auth.credits}</li>,
+          <li key="4" style = {{margin: '0 10px'}}>Credits: {this.props.auth.credits || 0}</li>,
           <li key="5"><NavLink
                 to="/dashborad"
                 activeClassName="selected"

@@ -1,14 +1,10 @@
-const {mongoose} = require('./../DB/mongoose');
-//Schema definition
-var UserSchema = new mongoose.Schema({
-    googleAuthId: String,
-    name: String,
-    credits: {
-        type: Number,
-        default: 0
-    }
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
+const userSchema = new Schema({
+  googleId: String,
+  name: String,
+  credits: { type: Number, default: 0 }
 });
 
-//Method functions
-
-mongoose.model('Users', UserSchema);
+mongoose.model('user', userSchema);
