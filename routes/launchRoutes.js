@@ -33,12 +33,29 @@ module.exports = function(app) {
     app.get('/api/launch', requireLogin ,async (req, res) => {
         let userLaunches = await Launch.find({_user: req.user.id});
         
-        for(var i = 0; i < userLaunches.length; i++){
+        setTimeout(
+        async () => { for(var i = 0; i < userLaunches.length; i++){
             if((Date.now() - userLaunches[i].startDate.getTime()) >  172800000){
                 const removedUser = await Launch.findOneAndRemove({name: userLaunches[i].name, _user: userLaunches[i]._user});
             }
-        }
-
+        }}
+        , userLaunches.length * 150);
         res.send(userLaunches).status(200);       
+    });
+
+    app.get('/api/launch/:launchId', async (req, res) => {
+        console.log("server - getLaunch");
+        let launch = await Launch.findById(req.params.launchId);
+        if(!launch){
+            res.status(404).send("Launch does not exist");
+        } else {
+            if((Date.now() - launch.startDate.getTime()) >  172800000) {
+                const removedLaunch = await Launch.findOneAndRemove({name: launch.name, _user: launch._user});
+                res.status(404).send("Launch does not exist");
+            }
+            else {
+                res.status(200).send(launch)
+            }
+        } 
     });
 };

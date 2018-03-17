@@ -27,7 +27,8 @@ class AppRouter extends Component {
                     <Route path="/create" component= {LaunchNew} exact={true} />
                     <Route path="/get" component= {GetLaunch} exact={true} />
                     <Route path="/dashborad" component= {Dashborad} exact={true} />
-                    <Route path="/new" component= {LaunchNew} exact={true} />
+                    <Route path="/getLaunch/:launchId" component={GetLaunch} exact={true} />
+                    <Route path="/launchNotFound" component={PageNotFound} exact={true}/>
                     <Route component = {PageNotFound} />  
                 </Switch>
                 </div>

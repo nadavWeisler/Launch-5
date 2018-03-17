@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {FETCH_USER, FETCH_LAUNCHES} from './types';
-import errors from '../utils/errors';
+import {FETCH_USER, FETCH_LAUNCHES, FETCH_CURRENT_LAUNC} from './types';
 
 export const fetchUser = () => async dispatch => {
         const res = await axios.get('/api/current_user');
@@ -27,4 +26,16 @@ export const fetchLaunches = () => async dispatch => {
     const res = await axios.get('api/launch');
 
     dispatch({type: FETCH_LAUNCHES, payload: res.data});
+}
+
+export const fetchCurrentLaunch = (launchId, history) => async(dispatch) => {
+    console.log('FetchLaunch');
+    try {  
+        const res = await axios.get('/api/launch/' + launchId);
+        dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+    }
+    catch(error) {
+        console.log(error);
+        dispatch({type: FETCH_CURRENT_LAUNC, payload: null});
+    }
 }
