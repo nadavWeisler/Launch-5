@@ -33,7 +33,6 @@ class GetLaunch extends Component {
       return '';
     }
   }
-
   getOutlookPath(){
     if(this.props.currentLaunch){
       return this.props.currentLaunch.outlookPath;
@@ -47,20 +46,37 @@ class GetLaunch extends Component {
     if(this.props.currentLaunch){
       return (
         <div className="App" style={{textAlign: 'center'}}>
-          <header className="App-header">
-            <h1 className="App-title">Get Launch</h1>
-          </header>
-          <p className="App-intro">
-            You get launc1 Launch! 
-          </p>
-          <p className="App-intro">
-            send launch at:
-          </p>
+          <h1 className="header center red-text"> קיבלת שאת השיגור: {this.props.currentLaunch.name}</h1>
+          <div className="row center">
+            <h5 className="header col s12 light">
+            {this.props.currentLaunch.desc} 
+            </h5>
+          </div>
+          <h5 className="App-intro">
+            בחר כיצד לשלוח את השיגור
+          </h5>
+          <br/>
           <div className="row">
-            <div className="col s3"><a href={this.getWhatsappPath()} className="waves-effect waves-light btn">Whatsapp</a></div>
-            <div className="col s3"><a href={this.getSmsPath()} className="waves-effect waves-light btn">SMS</a></div>
-            <div className="col s3"><a href={this.getGmailPath()} className="waves-effect waves-light btn">Gmail</a></div>
-            <div className="col s3"><a href={this.getOutlookPath()} className="waves-effect waves-light btn">Gmail</a></div>
+          <div className="card darken-1" key='whatsappCard'>
+            <div className="card-content">
+                <span><a href={this.getWhatsappPath()} className="red btn">Whatsapp</a></span>
+            </div>
+          </div>
+          <div className="card darken-1" key='whatsappCard'>
+            <div className="card-content">
+                <span><a href={this.getSmsPath()} className="red btn">SMS</a></span>
+            </div>
+          </div> 
+          <div className="card darken-1" key='whatsappCard'>
+            <div className="card-content">
+                <span><a href={this.getGmailPath()} className="red btn">Gmail</a></span>
+            </div>
+          </div> 
+          <div className="card darken-1" key='whatsappCard'>
+            <div className="card-content">
+                <span><a href={this.getOutlookPath()} className="red btn">Outlook</a></span>
+            </div>
+          </div> 
           </div>
         </div>
       );
@@ -72,7 +88,6 @@ class GetLaunch extends Component {
   }
 
   render() {
-    console.log(this.props.launch);
     return (
       this.renderContent()
     );

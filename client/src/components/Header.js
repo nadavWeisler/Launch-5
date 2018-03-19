@@ -7,24 +7,24 @@ class Header extends Component {
   renderContent(){
     switch(this.props.auth){
       case null:
-        return 'Still deciding';
+        return 'מתחבר';
       case false:
-        return (<li><a href='/auth/google'>Sign In With Google</a></li>)
+        return (<li><a href='/auth/google'>התחבר בעזרת גוגל</a></li>)
       default:
         return (
           [<li key="1"><Payments/></li>,
-          <li key="4" style = {{margin: '0 10px'}}>Credits: {this.props.auth.credits}</li>,
+          <li key="4" style = {{margin: '0 10px'}}>שיגורים שנותרו: {this.props.auth.credits}</li>,
           <li key="5"><NavLink
                 to="/dashborad"
                 activeClassName="selected"
                 className= "nalink"
-                >Dashborad
+                >השיגורים שלי
             </NavLink></li>,
           <li key="2"><NavLink
               to="/create"
-              >Create Launch
+              >צור שיגור
           </NavLink></li>,
-        <li key="3"><a href='/api/logout'>Logout</a></li>]);
+        <li key="3"><a href='/api/logout'>התנתק</a></li>]);
     }
   }
   

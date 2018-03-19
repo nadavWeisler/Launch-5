@@ -17,8 +17,8 @@ class LaunchList extends Component {
                         <p>
                             {launch.desc}
                         </p>
-                        <p className="right">
-                            Sent On: {new Date(launch.startDate).toLocaleDateString()}
+                        <p className="left">
+                            Sent On: {new Date(launch.startDate).toLocaleString()}
                         </p>
                     </div>
                     <div className="card-action">
@@ -26,6 +26,7 @@ class LaunchList extends Component {
                         <a>SMS: {launch.smsCount}</a>
                         <a>Whatapp: {launch.whatsappCount}</a>
                         <a>Outlook: {launch.outlookCount}</a>
+                        <a className="left">{'launch-5/' + launch._id}</a>
                     </div>
                 </div>
             );

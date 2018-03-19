@@ -9,7 +9,7 @@ const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
     const reviewFields = _.map(formFields, field => {
         return (
             <div>
-                <label>{field.label}</label>
+                <label key={field.label}>{field.label}</label>
                 <div>{formValues[field.name] || '-'}</div>
             </div>
         );
@@ -17,16 +17,16 @@ const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
     
     return (
         <div>
-            <h5>Please confirm your entries</h5>
+            <h5>אשר את בחירתך</h5>
             {reviewFields}
             <button
                 className="yellow darken-3 white-text btn-flat"
                 onClick={onCancel}>
-                Back
+                אחורה
             </button>
             <button onClick={() => submitLaunch(formValues, history)}
-                className="green btn-flat right white-text">
-                Send launch
+                className="green btn-flat left white-text">
+                    שלח שיגור
             </button>
         </div>
     );

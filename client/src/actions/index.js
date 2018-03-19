@@ -23,8 +23,8 @@ export const submitLaunch = (values, history) => async dispatch => {
 }
 
 export const fetchLaunches = () => async dispatch => {
-    const res = await axios.get('api/launch');
-
+    const res = await axios.get('/api/launch');
+    
     dispatch({type: FETCH_LAUNCHES, payload: res.data});
 }
 

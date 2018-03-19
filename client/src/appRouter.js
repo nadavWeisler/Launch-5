@@ -21,7 +21,7 @@ class AppRouter extends Component {
             <BrowserRouter>
             <div style={{fontFamily:'Helvetica'}}>
                 <Header/>   
-                <div style = {{margin: '20px 0'}}>
+                <div dir="rtl" style = {{margin: '20px 0'}}>
                 <Switch style={{textAlign:'center'}}>
                     <Route path="/" component= {Home} exact={true} />
                     <Route path="/create" component= {LaunchNew} exact={true} />

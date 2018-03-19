@@ -7,16 +7,18 @@ class App extends Component {
       <div className="app" style={{textAlign:'center'}}>
         <div className="container">
           <br/>
-          <h1 className="header center red-text">Welcome to Launch5</h1>
+          <h1 className="header center red-text">
+            ברוכים הבאים ל-Launch5
+          </h1>
           <div className="row center">
             <h5 className="header col s12 light">
-              A modern way to bother someone
+              דרך מודרנית להציף אנשים
             </h5>
           </div>
           <div className="row center">
             <NavLink className=" btn-large waves-effect waves-light red white-text"
-              to='/new'>
-              Create Launch
+              to='/create'>
+                צור שיגור
             </NavLink>
           </div>
           <div className="container">
@@ -25,9 +27,9 @@ class App extends Component {
                 <div className="col s12 m4">
                   <div className="icon-block">
                     <h2 className="center light-blue-text"><i className="material-icons">flash_on</i></h2>
-                    <h5 className="center">Speed</h5>
+                    <h5 className="center">מהירות</h5>
                     <p className="light">
-                      A few clicks and the world is already a better place because of you.
+                      שיגור יהיה פתוח ליומיים, וביומיים האלו אדם יוכל במהירות ובלחיצה אחת לשלוח הודעה למי שתבחרי
                     </p>
                   </div>
                 </div>
@@ -35,9 +37,10 @@ class App extends Component {
                 <div className="col s12 m4">
                   <div className="icon-block">
                     <h2 className="center light-blue-text"><i className="material-icons">group</i></h2>
-                    <h5 className="center">Together</h5>
+                    <h5 className="center">חברתיות</h5>
 
-                    <p className="light">Changing the world together. Share and send to you friends in order to create bigger influence.
+                    <p className="light">
+                      יחד נוכל להשפיע על גורמי הכוח ולדאוג לאינטרסים שלנו, הציבור
                     </p>
                   </div>
                 </div>
@@ -45,9 +48,10 @@ class App extends Component {
                 <div className="col s12 m4">
                   <div className="icon-block">
                     <h2 className="center light-blue-text"><i className="material-icons">settings</i></h2>
-                    <h5 className="center">Impact</h5>
-
-                    <p className="light">Send the facts to the people in charge. Send the truth to those who are in control.</p>
+                    <h5 className="center">פשטות</h5>
+                    <p className="light">
+                    במילוי טופס פשוט תוכלי ליצור הודעה שתגיע ממספר נמענים למי שתבחר
+                    </p>
                   </div>
                 </div>
               </div>
