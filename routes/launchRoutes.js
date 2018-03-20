@@ -31,16 +31,17 @@ module.exports = function(app) {
         const existingLaunches = await Launch.find({name: launch.name, _user: launch._user});
         if (existingLaunches.length != 0) {
             res.status(409).send('Launch already exist');
-            return;
-        };
-        launch.save();
-        req.user.credits = req.user.credits - 1;
-        try {
-            const user = await req.user.save();
-            res.status(200).send(user);
-        }
-        catch(err) {
-            res.status(402).send(err);
+            
+        } else {
+            launch.save();
+            req.user.credits = req.user.credits - 1;
+            try {
+                const user = await req.user.save();
+                res.status(200).send(user);
+            }
+            catch(err) {
+                res.status(402).send(err);
+            }
         }
     });
     
