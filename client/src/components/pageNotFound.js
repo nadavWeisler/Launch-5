@@ -1,13 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 // 404 page not found 
 // TOIDO: make pretty
 
 const pageNotFound = () => {
     return (
      <div>
-        page not found! <Link to= "/"> Go Home </Link>
+         <h1 className="header center red-text">
+            עמוד לא נמצא
+        </h1>
      </div>   
     );
 }

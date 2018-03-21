@@ -45,6 +45,15 @@ module.exports = function(app) {
         }
     });
     
+    app.post('/api/whatsappClicked', async (req, res) =>{
+        let launch = await Launch.findById(req.body._id);
+        if(launch){
+            launch.whatsappCount = launch.whatsappCount + 1;
+            const newLaunch = launch.save();
+            res.send(newLaunch);
+        }
+    });
+
     app.get('/api/launch', requireLogin ,async (req, res) => {
         console.log("start get /api/launch");
         let userLaunches = await Launch.find({_user: req.user.id});
@@ -56,7 +65,7 @@ module.exports = function(app) {
                 userLaunches.splice(i, 1);
             }
         }}
-        , userLaunches.length * 150);
+        , userLaunches.length * 200);
         res.send(userLaunches).status(200);       
     });
 

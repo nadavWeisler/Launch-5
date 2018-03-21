@@ -9,7 +9,11 @@ class Header extends Component {
       case null:
         return 'מתחבר';
       case false:
-        return (<li><a href='/auth/google'>התחבר בעזרת גוגל</a></li>)
+        return (
+          <li>
+            <a href='/auth/google'>התחבר בעזרת גוגל</a>
+          </li>
+        )
       default:
         return (
           [<li key="1"><Payments/></li>,
@@ -32,7 +36,7 @@ class Header extends Component {
     return (
       <nav className="red">
         <div className="nav-wrapper container">
-          <NavLink
+          <NavLink 
                 className="brand-logo"
                 to="/"
                 >
@@ -44,7 +48,6 @@ class Header extends Component {
           <ul id="nav-mobile" className="side-nav">
             {this.renderContent()}
           </ul>
-          
         </div>
       </nav>
     );

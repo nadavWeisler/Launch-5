@@ -6,11 +6,10 @@ import * as actions from '../actions';
 class Payments extends Component {
     
     render() {
-        console.log(process.env.REACT_APP_STRIPE_KEY);
         return (
             <StripeCheckout
                 name = "Launch5"
-                description = "5$ שיגור אחת"
+                description = "5$ שיגור אחד"
                 amount = {500}
                 token = {token => this.props.handleToken(token)}
                 stripeKey = {process.env.REACT_APP_STRIPE_KEY}

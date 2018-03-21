@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 
 class App extends Component {
   render() {
@@ -14,13 +13,7 @@ class App extends Component {
             <h5 className="header col s12 light">
               דרך מודרנית להציף אנשים
             </h5>
-          </div>
-          <div className="row center">
-            <NavLink className=" btn-large waves-effect waves-light red white-text"
-              to='/create'>
-                צור שיגור
-            </NavLink>
-          </div>
+          </div>     
           <div className="container">
             <div className="section">
               <div className="row">
