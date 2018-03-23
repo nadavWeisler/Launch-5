@@ -1,6 +1,6 @@
 export default [
     { label: 'שם', name: 'name', type: 'input' },
-    { label: 'תיאור', name: 'desc' , type: 'textArea'},
+    { label: 'תיאור', name: 'desc' , type: 'input'},
     { label: 'מספר נייד', name: 'phoneNumber', type: 'input' },
     { label: 'טקסט הודעה', name: 'textBody' , type: 'textArea'},
     { label: 'כתובת דואר אלקטרוני', name: "emailSender", type: 'input'},

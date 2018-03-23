@@ -22,16 +22,10 @@ export const submitLaunch = (values, history) => async dispatch => {
     }
 }
 
-export const whatsappClick = (launch) => async dispatch => {
-    const res = await axios.post('/api/whastappClick', launch);
-    dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
-}
-
 export const fetchLaunches = () => async dispatch => {
     const res = await axios.get('/api/launch'); 
     dispatch({type: FETCH_LAUNCHES, payload: res.data});
 }
-
 export const fetchCurrentLaunch = (launchId, history) => async(dispatch) => {
     console.log('FetchLaunch');
     try {  

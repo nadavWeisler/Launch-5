@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Payments from './Payments'; 
 
 class Header extends Component {
   renderContent(){
@@ -16,8 +15,9 @@ class Header extends Component {
         )
       default:
         return (
-          [<li key="1"><Payments/></li>,
-          <li key="4" style = {{margin: '0 10px'}}>שיגורים שנותרו: {this.props.auth.credits}</li>,
+          [
+          // <li key="1"><Payments/></li>,
+          // <li key="4" style = {{margin: '0 10px'}}>שיגורים שנותרו: {this.props.auth.credits}</li>,
           <li key="5"><NavLink
                 to="/dashborad"
                 activeClassName="selected"
@@ -31,25 +31,25 @@ class Header extends Component {
         <li key="3"><a href='/api/logout'>התנתק</a></li>]);
     }
   }
-  
+
+ 
   render() {
     return (
-      <nav className="red">
-        <div className="nav-wrapper container">
-          <NavLink 
-                className="brand-logo"
-                to="/"
-                >
-                Launch5
-            </NavLink>
-          <ul className="right hide-on-med-and-down">
-            {this.renderContent()}
-          </ul>
-          <ul id="nav-mobile" className="side-nav">
-            {this.renderContent()}
-          </ul>
-        </div>
-      </nav>
+      <div>
+        <nav className="red">
+          <div className="nav-wrapper container">
+            <NavLink 
+                  className="brand-logo"
+                  to="/"
+                  >
+                  Launch5
+              </NavLink>
+            <ul className="right hide-on-med-and-down">
+              {this.renderContent()}
+            </ul>
+          </div>  
+        </nav>     
+      </div>
     );
   }
 }

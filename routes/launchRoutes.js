@@ -16,7 +16,7 @@ function getProperText(text){
 
 module.exports = function(app) {
      //Post launch
-    app.post('/api/launch', requireLogin, requireCredits, async (req, res) => {
+    app.post('/api/launch', requireLogin, async (req, res) => {
         console.log("post launch - start");
         var launch = new Launch();
         launch.name = req.body.name;
@@ -34,7 +34,7 @@ module.exports = function(app) {
             
         } else {
             launch.save();
-            req.user.credits = req.user.credits - 1;
+            //req.user.credits = req.user.credits - 1;
             try {
                 const user = await req.user.save();
                 res.status(200).send(user);
