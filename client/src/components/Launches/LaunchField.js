@@ -1,19 +1,18 @@
 import React from 'react';
+import {FormGroup, ControlLabel,  FormControl} from 'react-bootstrap'
 
-function getInputByType(type, input) {
-  if(type === 'input'){
-    return <input {...input} style={{ marginBottom: '5px' }} />
-  } else {
-    return <textarea {...input} className="materialize-textarea" style={{ marginBottom: '5px' }} />;
-  }
-}
-
-export default ({ input, label, type, meta: { error, touched } }) => {
+export default ({ input, label, type, componentClass, meta: { error, touched } }) => {
   return (
-    <div key={input + label}>
-      <label>{label}</label>
-      {getInputByType(type, input)}
-      <div className="red-text" style={{ marginBottom: '20px' }}>
+    <div>
+      <FormGroup>
+        <ControlLabel>{label}</ControlLabel>
+        <FormControl 
+          onChange={input.onChange} 
+          value={input.value} 
+          type={type}
+          componentClass={componentClass}/>
+      </FormGroup>
+      <div style={{ marginBottom: '20px', color:"red" }}>
         {touched && error}
       </div>
     </div>

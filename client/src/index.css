@@ -1,0 +1,18 @@
+.navbar {
+    background-color:#5F4B8B;
+    background-image: none;
+    background-repeat: no-repeat;
+}
+
+.navbar-custom {
+    color: #FFFFFF;
+    background-color: #5F4B8B;
+}
+
+.navber_header{
+    color:"#FFFFFF";
+}
+
+.text_icon{
+    margin: 20%;
+}

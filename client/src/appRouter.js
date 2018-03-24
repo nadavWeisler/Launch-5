@@ -8,6 +8,7 @@ import Home from './components/Home';
 import Header from './components/Header';
 import Dashborad from './components/Dashborad';
 import LaunchNew from './components/Launches//LaunchNew'
+import './index.css';
 
 // Renders the diffrent routes- being renderd by index.js
 
@@ -19,7 +20,7 @@ class AppRouter extends Component {
     render() {
         return (
             <BrowserRouter>
-            <div style={{fontFamily:'Helvetica'}}>
+            <div style={{fontFamily:'Assistant'}}>
                 <Header/>   
                 <div dir="rtl" style = {{margin: '20px 0'}}>
                 <Switch style={{textAlign:'center'}}>

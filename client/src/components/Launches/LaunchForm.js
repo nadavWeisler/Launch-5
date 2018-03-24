@@ -6,10 +6,11 @@ import { NavLink } from 'react-router-dom';
 import validateEmails from '../../utils/validateEmail';
 import formFields from './formFields';
 import validatePhone from '../../utils/validatePhone';
+import {Button} from 'react-bootstrap';
 
 class LaunchForm extends Component {
     renderFields() {
-        return _.map(formFields, ({ label, name, type }) => {
+        return _.map(formFields, ({ name, label, type, componentClass, placeHolder }) => {
           return (
             <div>
               <Field
@@ -18,6 +19,7 @@ class LaunchForm extends Component {
                 type={type}
                 label={label}
                 name={name}
+                componentClass={componentClass}
               />
             </div>
           );
@@ -29,13 +31,14 @@ class LaunchForm extends Component {
         <div>
           <form onSubmit={this.props.handleSubmit(this.props.onLaunchSubmit)}>
             {this.renderFields()}
-            <NavLink to="/" className="red btn-flat white-text">
-              בטל
-            </NavLink>
-            <button type="submit" className="teal btn-flat left white-text">
+            <Button>
+              <NavLink to="/">
+                בטל
+              </NavLink>
+            </Button>
+            <Button type="submit">
               הבא
-              <i className="material-icons left">done</i>
-            </button>
+            </Button>
           </form>
         </div>
       );
@@ -44,7 +47,7 @@ class LaunchForm extends Component {
 
 function validate(values) {
     const errors = {};
-  
+    
     _.each(formFields, ({ name }) => {
       if (!values[name]) {
         errors[name] = 'ערך זה אינו יכול להיות ריק';
@@ -64,7 +67,8 @@ function validate(values) {
   
 
 export default reduxForm({
-    validate,
-    form: 'launchForm',
-    destroyOnUnmount: false
-    })(LaunchForm);
+  validate,
+  form: 'launchForm',
+  destroyOnUnmount: false
+    })(LaunchForm);  
+    

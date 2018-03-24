@@ -4,6 +4,7 @@ import formFields from './formFields';
 import _ from 'lodash';
 import * as actions from '../../actions';
 import {withRouter} from 'react-router-dom';
+import {Button} from 'react-bootstrap';
 
 const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
     const reviewFields = _.map(formFields, field => {
@@ -17,17 +18,14 @@ const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
     
     return (
         <div>
-            <h5>אשר את בחירתך</h5>
+            <h3>אשר את בחירתך</h3>
             {reviewFields}
-            <button
-                className="yellow darken-3 white-text btn-flat"
-                onClick={onCancel}>
+            <Button onClick={onCancel}>
                 אחורה
-            </button>
-            <button onClick={() => submitLaunch(formValues, history)}
-                className="green btn-flat left white-text">
-                    שלח שיגור
-            </button>
+            </Button>
+            <Button onClick={() => submitLaunch(formValues, history)}>
+                שלח שיגור
+            </Button>
         </div>
     );
 };

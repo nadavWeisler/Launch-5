@@ -1,55 +1,55 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class Home extends Component {
   render() {
     return (
-      <div className="app" style={{textAlign:'center'}}>
-        <div className="container">
+      <div style={{textAlign:'center'}}>
+        <div>
+          <h1 style={{color:'#5F4B8B',}}><strong>
+            Launch5
+          </strong></h1>
+          <h3>
+            דרך מודרנית להציף אנשים
+          </h3> 
+          <h4>
+            חברי הכנסת ומובילי הדעה לא יוכלו עוד להתעלם מכם: שגרו הודעה במהירות ובפשטות
+          </h4>
+
           <br/>
-          <h1 className="header center red-text">
-            ברוכים הבאים ל-Launch5
-          </h1>
-          <div className="row center">
-            <h5 className="header col s12 light">
-              דרך מודרנית להציף אנשים
-            </h5>
-          </div>     
-          <div className="container">
-            <div className="section">
-              <div className="row">
-                <div className="col s12 m4">
-                  <div className="icon-block">
-                    <h2 className="center light-blue-text"><i className="material-icons">flash_on</i></h2>
-                    <h5 className="center">מהירות</h5>
-                    <p className="light">
-                      שיגור יהיה פתוח ליומיים, וביומיים האלו אדם יוכל במהירות ובלחיצה אחת לשלוח הודעה למי שתבחרי
+
+          <div style={{alignItems:"center"}}>
+                <div className="col-md-3">
+                </div>
+                <div className="col-md-2">
+                  <div>
+                    <h2><i className="material-icons">settings</i></h2>
+                    <h4><strong>מהו שיגור?</strong></h4>
+                    <p>
+                      שיגור הוא הודעה מוכנה מראש לנמען שתקבעו ל-48 שעות בלבד  
                     </p>
                   </div>
                 </div>
 
-                <div className="col s12 m4">
-                  <div className="icon-block">
-                    <h2 className="center light-blue-text"><i className="material-icons">group</i></h2>
-                    <h5 className="center">חברתיות</h5>
-
-                    <p className="light">
-                      יחד נוכל להשפיע על גורמי הכוח ולדאוג לאינטרסים שלנו, הציבור
+                <div className="col-md-2">
+                  <div>
+                    <h2><i className="material-icons">flash_on</i></h2>
+                    <h4><strong>מהירות</strong></h4>
+                    <p>
+                      בלחיצה אחת כל אחד יוכל לשלוח הודעה מוכנה מראש לנמען שקבעתם 
                     </p>
                   </div>
                 </div>
 
-                <div className="col s12 m4">
-                  <div className="icon-block">
-                    <h2 className="center light-blue-text"><i className="material-icons">settings</i></h2>
-                    <h5 className="center">פשטות</h5>
-                    <p className="light">
-                    במילוי טופס פשוט תוכלי ליצור הודעה שתגיע ממספר נמענים למי שתבחר
+                <div className="col-md-2">
+                  <div>
+                    <h2><i className="material-icons">group</i></h2>
+                    <h4><strong>חברתיות</strong></h4>
+                    <p>
+                     יחד נוכל להשפיע על גורמי הכוח ולדאוג לאינטרסים שלנו, הציבור 
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
-          </div> 
         </div>
         
       </div>
@@ -57,4 +57,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;

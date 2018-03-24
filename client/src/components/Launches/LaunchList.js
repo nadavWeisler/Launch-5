@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {fetchLaunches} from '../../actions';
-
+import {Panel} from 'react-bootstrap';
 
 class LaunchList extends Component {
     componentDidMount() {
@@ -11,17 +11,16 @@ class LaunchList extends Component {
     renderLaunches() {
         return this.props.launches.map(launch => {
             return (
-                <div className="card darken-1" key={launch._id}>
-                    <div className="card-content">
-                        <a href={'/getLaunch/' + launch._id} className="card-title">{launch.name}</a>
-                        <p>
-                            {launch.desc}
-                        </p>
-                        <p className="left">
-                            זמן יצירה: {new Date(launch.startDate).toLocaleString()}
-                        </p>
-                    </div>
-                </div>
+                <Panel>
+                    <Panel.Heading>
+                        <Panel.Title componentClass="h3">
+                            <a href={'/getLaunch/' + launch._id} className="card-title">{launch.name}</a>
+                        </Panel.Title>
+                    </Panel.Heading>
+                    <Panel.Body>
+                        זמן יצירה: {new Date(launch.startDate).toLocaleString()}
+                    </Panel.Body>
+                </Panel> 
             );
         })
     }
