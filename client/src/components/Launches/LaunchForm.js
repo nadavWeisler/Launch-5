@@ -31,15 +31,12 @@ class LaunchForm extends Component {
         <div>
           <form onSubmit={this.props.handleSubmit(this.props.onLaunchSubmit)}>
             {this.renderFields()}
-            <div className="col-md-1">
+            <div>
               <Button bsSize="large" type="submit" className="navbar-custom" >
                 הבא
               </Button>
             </div>
-            <div className="col-md-10">
-            
-            </div>
-            <div className="col-md-1">
+            <div>
               <Button bsSize="large" className="navbar-custom">
                 <NavLink to="/" style={{display: 'block', height: '100%', color:"#FFFFFF"}}>
                   בטל

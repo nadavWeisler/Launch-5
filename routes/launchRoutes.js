@@ -48,16 +48,18 @@ module.exports = function(app) {
     app.get('/api/launch', requireLogin ,async (req, res) => {
         console.log("start get /api/launch");
         let userLaunches = await Launch.find({_user: req.user.id});
-        setTimeout(
-        async () => { for(var i = 0; i < userLaunches.length; i++){
+        for(var i = 0; i < userLaunches.length; i++){
             if((Date.now() - userLaunches[i].startDate.getTime()) >  172800000){
                 console.log("all launch delete Launch");
                 const removedUser = await Launch.findOneAndRemove({name: userLaunches[i].name, _user: userLaunches[i]._user});
                 userLaunches.splice(i, 1);
             }
-        }}
-        , userLaunches.length * 200);
-        res.send(userLaunches).status(200);       
+        }
+        
+        setTimeout(
+            async () => { 
+                res.send(userLaunches).status(200);    
+            }, 500);   
     });
 
     app.get('/api/launch/:launchId', async (req, res) => {

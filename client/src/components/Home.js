@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import {Button} from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { FaInfoCircle, FaGroup} from 'react-icons/lib/fa'
+import { MdFlashOn } from 'react-icons/lib/md'
+
 class Home extends Component {
   
   renderButton(){
@@ -19,9 +22,9 @@ class Home extends Component {
         )
       default:
         return (
-              <NavLink to="/create" className="btn-lg navbar-custom" style={{width: '200px', color:"#FFFFFF"}}>
+              <Link to="/create" className="btn-lg navbar-custom" style={{width: '200px', color:"#FFFFFF"}}>
                   צור שיגור
-              </NavLink>)
+              </Link>)
       
     }
   }
@@ -45,7 +48,7 @@ class Home extends Component {
                 </div>
                 <div className="col-md-2">
                   <div>
-                    <h2><i className="material-icons">settings</i></h2>
+                    <h2><FaInfoCircle/></h2>
                     <h4><strong>מהו שיגור?</strong></h4>
                     <p>
                       שיגור הוא הודעה מוכנה מראש לנמען שתקבעו ל-48 שעות בלבד  
@@ -55,7 +58,7 @@ class Home extends Component {
 
                 <div className="col-md-2">
                   <div>
-                    <h2><i className="material-icons">flash_on</i></h2>
+                    <h2><MdFlashOn/> </h2>
                     <h4><strong>מהירות</strong></h4>
                     <p>
                       בלחיצה אחת כל אחד יוכל לשלוח הודעה מוכנה מראש לנמען שקבעתם 
@@ -65,7 +68,7 @@ class Home extends Component {
 
                 <div className="col-md-2">
                   <div>
-                    <h2><i className="material-icons">group</i></h2>
+                    <h2><FaGroup/></h2>
                     <h4><strong>חברתיות</strong></h4>
                     <p>
                      יחד נוכל להשפיע על גורמי הכוח ולדאוג לאינטרסים שלנו, הציבור 

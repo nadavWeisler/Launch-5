@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Nav, Navbar, NavItem } from 'react-bootstrap';
-import { LinkContainer } from "react-router-bootstrap";
+import { LinkContainer, IndexLinkContainer  } from "react-router-bootstrap";
 
 class Header extends Component {
   renderContent(){
@@ -22,11 +22,11 @@ class Header extends Component {
       default:
         return (
           [
-        <LinkContainer to="/dashborad">
+        <IndexLinkContainer to="/dashborad">
           <NavItem>
               <font color="white">השיגורים שלי</font>
           </NavItem>
-        </LinkContainer>,
+        </IndexLinkContainer>,
         <LinkContainer to="/create">
           <NavItem>
               <font color="white"> צור שיגור</font>
