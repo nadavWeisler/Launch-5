@@ -20,11 +20,9 @@ const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
         <div>
             <h3>אשר את בחירתך</h3>
             {reviewFields}
-            <div>
-                <Button bsSize="large" className="navbar-custom" onClick={() => submitLaunch(formValues, history)}>
-                    שלח שיגור
-                </Button>
-            </div>
+            <Button bsSize="large" className="navbar-custom" onClick={() => submitLaunch(formValues, history)}>
+                שלח שיגור
+            </Button>
             <Button bsSize="large" className="navbar-custom" onClick={onCancel}>
                 אחורה
             </Button>
