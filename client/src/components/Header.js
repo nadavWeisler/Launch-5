@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Nav, Navbar, NavItem } from 'react-bootstrap';
+import { LinkContainer } from "react-router-bootstrap";
 
 class Header extends Component {
   renderContent(){
@@ -9,41 +10,30 @@ class Header extends Component {
       case null:
         return (
           <NavItem>
-            מתחבר
+            <font color="white">מתחבר</font>
           </NavItem>);
       case false:
         return (
-          <NavItem>
-            <a 
-              style={{display: 'block', height: '100%', color:"#FFFFFF"}}
-              href='/auth/google'>
-                התחבר בעזרת גוגל
-            </a>
+          <NavItem 
+            href='/auth/google'>
+            <font color="white">התחבר בעזרת גוגל</font>
           </NavItem>
         )
       default:
         return (
           [
-          <NavItem key="5">
-            <NavLink
-                style={{display: 'block', height: '100%', color:"#FFFFFF"}}
-                to="/dashborad"
-                >השיגורים שלי
-            </NavLink>
-          </NavItem>,
-          <NavItem key="2">
-            <NavLink
-              style={{display: 'block', height: '100%', color:"#FFFFFF"}}
-              to="/create"
-              >צור שיגור
-            </NavLink>
-          </NavItem>,
-        <NavItem key="3">
-          <a 
-            style={{display: 'block', height: '100%', color:"#FFFFFF"}}
-            href='/api/logout'>
-              התנתק
-          </a>
+        <LinkContainer to="/dashborad">
+          <NavItem>
+              <font color="white">השיגורים שלי</font>
+          </NavItem>
+        </LinkContainer>,
+        <LinkContainer to="/create">
+          <NavItem>
+              <font color="white"> צור שיגור</font>
+          </NavItem>
+        </LinkContainer>,
+        <NavItem href='/api/logout'>
+          <font color="white">התנתק</font>
         </NavItem>
           ]);
     }
@@ -55,7 +45,7 @@ class Header extends Component {
       <Navbar className="navbar navbar-custom">
         <Navbar.Header>
           <Navbar.Brand>
-            <NavLink to='/' className='navber_header' style={{display: 'block', height: '100%', color:"#FFFFFF"}}>
+            <NavLink to='/' className='white' style={{display: 'block', height: '100%', color:"#FFFFFF"}}>
               Launch5
             </NavLink>
           </Navbar.Brand>

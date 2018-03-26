@@ -9,10 +9,11 @@
     background-color: #5F4B8B;
 }
 
-.navber_header{
-    color:"#FFFFFF";
+.text_icon{
+    margin: 10px;
 }
 
-.text_icon{
-    margin: 20%;
+.getLaunchButton{
+    width: 100px;
+    height: 100px;
 }

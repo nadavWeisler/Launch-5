@@ -4,6 +4,7 @@ import {fetchCurrentLaunch} from '../actions';
 import {Button} from 'react-bootstrap';
 import {FaWhatsapp, FaGoogle} from 'react-icons/lib/fa';
 import {MdEmail, MdPhoneAndroid} from 'react-icons/lib/md';
+import AdSense from 'react-adsense';
 
 class GetLaunch extends Component {
   componentDidMount() {
@@ -63,7 +64,8 @@ class GetLaunch extends Component {
           <div className="col-md-4">
           </div>
           <div className="col-md-1">
-            <Button 
+            <Button
+              className="getLaunchButton" 
               href={this.getWhatsappPath()}>
               <div className="text_icon">
                 <FaWhatsapp size={32}/>
@@ -73,6 +75,7 @@ class GetLaunch extends Component {
           </div>    
           <div className="col-md-1">
             <Button
+              className="getLaunchButton"
               href={this.getSmsPath()}>
                 <div className="text_icon">
                   <MdPhoneAndroid size={32}/>
@@ -81,7 +84,9 @@ class GetLaunch extends Component {
             </Button>
           </div> 
           <div className="col-md-1">
-            <Button href={this.getOutlookPath()}>
+            <Button 
+              className="getLaunchButton"
+              href={this.getOutlookPath()}>
                 <div className="text_icon">
                   <MdEmail size={32}/>
                 </div>
@@ -89,13 +94,22 @@ class GetLaunch extends Component {
             </Button>
           </div>  
           <div className="col-md-1">
-            <Button href={this.getGmailPath()}>
+            <Button 
+              className="getLaunchButton"
+              href={this.getGmailPath()}>
               <div className="text_icon">
                 <FaGoogle size={32}/>
               </div>
               GMAIL
             </Button>
-          </div>             
+          </div>    
+           {/* ads with no set-up */}
+          <AdSense.Google
+            client='ca-pub-2946053301282540'
+            style={{ display: 'block' }}
+            layout='in-article'
+            format='fluid'
+          />         
         </div>
       );
     } else {

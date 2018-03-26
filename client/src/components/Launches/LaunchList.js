@@ -13,13 +13,16 @@ class LaunchList extends Component {
             return (
                 <Panel>
                     <Panel.Heading>
-                        <Panel.Title componentClass="h3">
-                            <a href={'/getLaunch/' + launch._id} className="card-title">{launch.name}</a>
+                        <Panel.Title  componentClass="h3">
+                            <a href={'/getLaunch/' + launch._id}>{launch.name}</a>
                         </Panel.Title>
                     </Panel.Heading>
                     <Panel.Body>
-                        זמן יצירה: {new Date(launch.startDate).toLocaleString()}
+                        {launch.desc}
                     </Panel.Body>
+                    <Panel.Footer>
+                        זמן יצירה: {new Date(launch.startDate).toLocaleString()}
+                    </Panel.Footer>
                 </Panel> 
             );
         })
