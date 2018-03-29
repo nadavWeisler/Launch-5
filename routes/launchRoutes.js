@@ -56,10 +56,35 @@ module.exports = function(app) {
             }
         }
         
-        setTimeout(
-            async () => { 
-                res.send(userLaunches).status(200);    
-            }, 500);   
+        res.send(userLaunches).status(200);    
+    });
+
+    app.post('/api/whatsAppClick', async (req, res) => {
+        let launch = await Launch.findById(req.body._id);
+        launch.whatsappCount = launch.whatsappCount + 1;
+        var newLaunch = launch.save();
+        res.status(200).send(newLaunch);
+    });
+
+    app.post('/api/smsClick', async (req, res) => {
+        let launch = await Launch.findById(req.body._id);
+        launch.smsCount = launch.smsCount + 1;
+        var newLaunch = launch.save();
+        res.status(200).send(newLaunch);
+    });
+
+    app.post('/api/outlookClick', async (req, res) => {
+        let launch = await Launch.findById(req.body._id);
+        launch.outlookCount = launch.outlookCount + 1;
+        var newLaunch = launch.save();
+        res.status(200).send(newLaunch);
+    });
+
+    app.post('/api/gmailClick', async (req, res) => {
+        let launch = await Launch.findById(req.body._id);
+        launch.gmailCount = launch.gmailCount + 1;
+        var newLaunch = launch.save();
+        res.status(200).send(newLaunch);
     });
 
     app.get('/api/launch/:launchId', async (req, res) => {

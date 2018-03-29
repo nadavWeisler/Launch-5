@@ -4,7 +4,9 @@ import LaunchList from './Launches/LaunchList'
 class Dashborad extends Component {
     render() {
         return (
-            <LaunchList/>      
+            <div className='container'>
+                <LaunchList/>      
+            </div>
         )}
 };
 

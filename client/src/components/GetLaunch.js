@@ -5,6 +5,8 @@ import {Button} from 'react-bootstrap';
 import {FaWhatsapp, FaGoogle} from 'react-icons/lib/fa';
 import {MdEmail, MdPhoneAndroid} from 'react-icons/lib/md';
 import AdSense from 'react-adsense';
+import {Grid, Row} from 'react-bootstrap';
+import * as actions from './../actions';
 
 class GetLaunch extends Component {
   componentDidMount() {
@@ -49,33 +51,40 @@ class GetLaunch extends Component {
   renderContent(){
     if(this.props.currentLaunch){
       return (
-        <div>
-          <h1> קיבלת את השיגור: {this.props.currentLaunch.name}</h1>
-          <div>
+        <Grid className="container">
+          <Row id='launchNameRow'>
+            <h1> קיבלת את השיגור: {this.props.currentLaunch.name}</h1>
+          </Row>
+          <Row id='launchDescRow'>
             <h3>
               {this.props.currentLaunch.desc} 
             </h3>
-          </div>
+          </Row>
           <br/>
+          <Row id='launchDescRow'>
           <h4>
             שיגור הוא הודעה מוכנה מראש לנמען שתקבעו ל-48 שעות בלבד  
           </h4>
+          </Row>
           <br/>  
-          <div className="col-md-4">
+          <div className="col-md-3">
           </div>
-          <div className="col-md-1">
+          <div className="col-md-2">
             <Button
               className="getLaunchButton" 
-              href={this.getWhatsappPath()}>
+              onClick={() => this.props.whatsAppClick(this.props.currentLaunch)}
+              href={this.getWhatsappPath()}
+              >
               <div className="text_icon">
                 <FaWhatsapp size={32}/>
               </div>
               Whatsapp
             </Button>
           </div>    
-          <div className="col-md-1">
+          <div className="col-md-2 visible-xs">
             <Button
               className="getLaunchButton"
+              onClick={() => this.props.smsClick(this.props.currentLaunch)}
               href={this.getSmsPath()}>
                 <div className="text_icon">
                   <MdPhoneAndroid size={32}/>
@@ -83,9 +92,10 @@ class GetLaunch extends Component {
                 SMS
             </Button>
           </div> 
-          <div className="col-md-1">
+          <div className="col-md-2">
             <Button 
               className="getLaunchButton"
+              onClick={() => this.props.outlookClick(this.props.currentLaunch)}
               href={this.getOutlookPath()}>
                 <div className="text_icon">
                   <MdEmail size={32}/>
@@ -93,24 +103,18 @@ class GetLaunch extends Component {
                 דואר אלקטרוני
             </Button>
           </div>  
-          <div className="col-md-1">
+          <div className="col-md-2 visible-lg">
             <Button 
               className="getLaunchButton"
+              onClick={() => this.props.gmailClick(this.props.currentLaunch)}
               href={this.getGmailPath()}>
               <div className="text_icon">
                 <FaGoogle size={32}/>
               </div>
               GMAIL
             </Button>
-          </div>    
-           {/* ads with no set-up */}
-          <AdSense.Google
-            client='ca-pub-2946053301282540'
-            style={{ display: 'block' }}
-            layout='in-article'
-            format='fluid'
-          />         
-        </div>
+          </div>           
+        </Grid>
       );
     } else {
       return <div>
@@ -126,8 +130,6 @@ class GetLaunch extends Component {
       </div>
     );
   }
-
-
 }
 
 function mapStateToProps(state){
@@ -135,4 +137,4 @@ function mapStateToProps(state){
     return {currentLaunch: state.currentLaunch}
 }
 
-export default connect(mapStateToProps, {fetchCurrentLaunch})(GetLaunch);
+export default connect(mapStateToProps, actions)(GetLaunch);

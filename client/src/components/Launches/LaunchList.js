@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {fetchLaunches} from '../../actions';
-import {Panel} from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { fetchLaunches } from '../../actions';
+import { Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 class LaunchList extends Component {
@@ -14,7 +14,7 @@ class LaunchList extends Component {
             case null:
             case false:
                 return (
-                    <div>
+                    <div style={{textAlign:'center'}}>
                         <h1>בחשבון זה אין שיגורים פעילים</h1>
                         <Link to="/create" className="btn-lg navbar-custom" style={{width: '200px', color:"#FFFFFF"}}>
                             צור שיגור
@@ -22,18 +22,20 @@ class LaunchList extends Component {
                     </div>
                 );
             default:
-                console.log(this.props.launches);
                 if(this.props.launches.length > 0){
                     return this.props.launches.map(launch => {
                         return (
                             <Panel>
                                 <Panel.Heading>
                                     <Panel.Title  componentClass="h3">
-                                        <a href={'/getLaunch/' + launch._id}>{launch.name}</a>
+                                        <a href={'/getLaunch/' + launch._id}>{launch.name}, {launch.desc}</a>
                                     </Panel.Title>
                                 </Panel.Heading>
                                 <Panel.Body>
-                                    {launch.desc}
+                                    <h5> וואטסאפ: {launch.whatsappCount}</h5>
+                                    <h5> הודעת טקסט: {launch.smsCount}</h5>
+                                    <h5> דואר אלקטרוני: {launch.outlookCount}</h5>
+                                    <h5> ג'ימייל: {launch.gmailCount}</h5>
                                 </Panel.Body>
                                 <Panel.Footer>
                                     זמן יצירה: {new Date(launch.startDate).toLocaleString()}
@@ -43,7 +45,7 @@ class LaunchList extends Component {
                     });
                 } else {
                     return (
-                        <div>
+                        <div style={{textAlign:'center'}}>
                             <h1>בחשבון זה אין שיגורים פעילים</h1>
                             <br/>
                             <Link to="/create" className="btn-lg navbar-custom" style={{width: '200px', color:"#FFFFFF"}}>
@@ -58,7 +60,7 @@ class LaunchList extends Component {
 
     render() {
         return (
-            <div style={{textAlign:'center'}}>
+            <div>
                 {this.renderLaunches()}
             </div>
         )};
