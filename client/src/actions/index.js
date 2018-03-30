@@ -51,6 +51,7 @@ export const outlookClick = (launch) => async dispatch => {
         console.log("outlookClick");
         const res = await axios.post('/api/outlookClick', launch);
         dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+        window.location.reload();
     }
     catch(error){
         console.log(error);
@@ -75,9 +76,10 @@ export const fetchLaunches = () => async dispatch => {
     dispatch({type: FETCH_LAUNCHES, payload: res.data});
 };
 
-export const fetchCurrentLaunch = (launchId, history) => async(dispatch) => {
+export const fetchCurrentLaunch = (launchId) => async(dispatch) => {
     console.log('FetchLaunch');
     try {  
+        setState({launchId: launchId});
         const res = await axios.get('/api/launch/' + launchId);
         dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
     }

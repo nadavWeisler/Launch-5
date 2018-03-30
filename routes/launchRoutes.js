@@ -22,8 +22,8 @@ module.exports = function(app) {
         launch.name = req.body.name;
         launch.smsPath = CreateMessage.CreateSms(req.body.phoneNumber, getProperText(req.body.textBody));
         launch.whatsappPath = CreateMessage.CreateWhatsapp(getWhatsAppPhone(req.body.phoneNumber), getProperText(req.body.textBody));
-        launch.gmailPath = CreateMessage.CreateEmail(req.body.emailSender, getProperText(req.body.emailSubject), getProperText(req.body.emailBody), 0);
-        launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, getProperText(req.body.emailSubject), getProperText(req.body.emailBody), 1);
+        launch.gmailPath = CreateMessage.CreateGmail(req.body.emailSender, getProperText(req.body.emailSubject), getProperText(req.body.emailBody));
+        launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, req.body.emailBcc,  req.body.emailCc, getProperText(req.body.emailSubject), getProperText(req.body.emailBody));
         launch._user = req.user.id;
         launch.startDate = Date.now();
         launch.desc = req.body.desc;
@@ -75,7 +75,7 @@ module.exports = function(app) {
 
     app.post('/api/outlookClick', async (req, res) => {
         let launch = await Launch.findById(req.body._id);
-        launch.outlookCount = launch.outlookCount + 1;
+        launch.outlookCount = (launch.outlookCount || 0) + 1;
         var newLaunch = launch.save();
         res.status(200).send(newLaunch);
     });

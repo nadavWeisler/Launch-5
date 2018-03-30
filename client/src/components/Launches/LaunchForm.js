@@ -49,14 +49,24 @@ function validate(values) {
     const errors = {};
     
     _.each(formFields, ({ name }) => {
-      if (!values[name]) {
+      if (!values[name] && 
+          name !== 'emailBcc' &&
+          name !== 'emailCc') {
         errors[name] = 'ערך זה אינו יכול להיות ריק';
       }
     });
 
     if (!validateEmails(values['emailSender'])){
       errors['emailSender'] = 'דואר אלקטרוני לא תקין';
-  }
+    }
+
+    if (!validateEmails(values['emailBcc']) && values['emailBcc']){
+      errors['emailBcc'] = 'דואר אלקטרוני לא תקין';
+    }
+
+    if (!validateEmails(values['emailCc']) && values['emailCc']){
+      errors['emailCc'] = 'דואר אלקטרוני לא תקין';
+    }
 
     if (!validatePhone(values['phoneNumber'])){
         errors['phoneNumber'] = 'מספר נייד לא תקין';

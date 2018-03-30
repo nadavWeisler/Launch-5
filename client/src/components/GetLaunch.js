@@ -37,6 +37,7 @@ class GetLaunch extends Component {
       return '';
     }
   }
+  
   getOutlookPath(){
     if(this.props.currentLaunch){
       return this.props.currentLaunch.outlookPath;

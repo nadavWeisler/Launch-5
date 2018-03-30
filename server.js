@@ -44,6 +44,15 @@ require('./models/user');
 //Google OAuth
 require('./services/passport');
 
+const {Launch} = require('./models/launch');
+
+var twoDaysOld = new Date()
+twoDaysOld.setMinutes(twoDaysOld.getDay-2)
+Launch.remove({timestamp: {$lt:twoDaysOld}}, function(err, result) {
+    console.log("Error: " + err);
+    console.log("Result: " + result);
+});
+
 
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('client/build'));
