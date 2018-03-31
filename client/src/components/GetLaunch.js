@@ -68,7 +68,8 @@ class GetLaunch extends Component {
           <Button
             className="getLaunchButton"
             onClick={() => this.props.smsClick(this.props.currentLaunch)}
-            href={this.getSmsPath()}>
+            href={this.getSmsPath()}
+            >
               <div className="text_icon">
                 <MdPhoneAndroid size={32}/>
               </div>
@@ -79,7 +80,8 @@ class GetLaunch extends Component {
           <Button 
             className="getLaunchButton"
             onClick={() => this.props.outlookClick(this.props.currentLaunch)}
-            href={this.getOutlookPath()}>
+            href={this.getOutlookPath()}
+            >
               <div className="text_icon">
                 <MdEmail size={32}/>
               </div>

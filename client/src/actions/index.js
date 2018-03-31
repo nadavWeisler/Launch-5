@@ -25,49 +25,40 @@ export const submitLaunch = (values, history) => async dispatch => {
 export const whatsAppClick = (launch) => async dispatch => {
     try {
         console.log("WhastappClick");
-        const res = await axios.post('/api/whatsAppClick', launch);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+        await axios.post('/api/whatsAppClick', launch);
     }
     catch(error){
         console.log(error);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: null});
     }
 };
 
 export const smsClick = (launch) => async dispatch => {
     try {
         console.log("smsClick");
-        const res = await axios.post('/api/smsClick', launch);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+        await axios.post('/api/smsClick', launch);
     }
     catch(error){
         console.log(error);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: null});
     }
 };
 
 export const outlookClick = (launch) => async dispatch => {
     try {
         console.log("outlookClick");
-        const res = await axios.post('/api/outlookClick', launch);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
-        window.location.reload();
+        await axios.post('/api/outlookClick', launch);
     }
     catch(error){
         console.log(error);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: null});
     }
 };
 
 export const gmailClick = (launch) => async dispatch => {
     try {
         console.log("gmailClick");
-        const res = await axios.post('/api/gmailClick', launch);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+        await axios.post('/api/gmailClick', launch);
     }
     catch(error){
         console.log(error);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: null});
     }
 };
 
@@ -79,7 +70,6 @@ export const fetchLaunches = () => async dispatch => {
 export const fetchCurrentLaunch = (launchId) => async(dispatch) => {
     console.log('FetchLaunch');
     try {  
-        setState({launchId: launchId});
         const res = await axios.get('/api/launch/' + launchId);
         dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
     }
