@@ -7,6 +7,7 @@ import {Grid, Row} from 'react-bootstrap';
 import * as actions from './../actions';
 
 class GetLaunch extends Component {
+  
   componentDidMount() {
     this.props.fetchCurrentLaunch(this.props.match.params.launchId);
   }
@@ -47,57 +48,78 @@ class GetLaunch extends Component {
     }
   }
 
+  getWhatsappButton(){
+    return (
+      <Button
+        className="getLaunchButton" 
+        onClick={() => this.props.whatsAppClick(this.props.currentLaunch)}
+        href={this.getWhatsappPath()}
+      >
+        <div className="text_icon">
+          <FaWhatsapp size={32}/>
+        </div>
+        Whatsapp
+    </Button>
+    )
+  }
+
+  getSmsButton(){
+    return (
+      <Button
+        className="getLaunchButton"
+        onClick={() => this.props.smsClick(this.props.currentLaunch)}
+        href={this.getSmsPath()}
+        >
+          <div className="text_icon">
+            <MdPhoneAndroid size={32}/>
+          </div>
+          SMS
+      </Button>
+    );
+  }
+
+  getOutlookButton(){
+    return (
+    <Button 
+      className="getLaunchButton"
+      onClick={() => this.props.outlookClick(this.props.currentLaunch)}
+      href={this.getOutlookPath()}
+      >
+        <div className="text_icon">
+          <MdEmail size={32}/>
+        </div>
+        דואר אלקטרוני
+    </Button>);
+  }
+
+  getGmailButton(){
+    return (<Button 
+      className="getLaunchButton"
+      onClick={() => this.props.gmailClick(this.props.currentLaunch)}
+      href={this.getGmailPath()}>
+      <div className="text_icon">
+        <FaGoogle size={32}/>
+      </div>
+      GMAIL
+    </Button>);
+  }
+
   buttonsRow(){
     return (
       <div> 
         <div className="col-md-3">
         </div>
-        <div className="col-md-2">
-          <Button
-            className="getLaunchButton" 
-            onClick={() => this.props.whatsAppClick(this.props.currentLaunch)}
-            href={this.getWhatsappPath()}
-            >
-            <div className="text_icon">
-              <FaWhatsapp size={32}/>
-            </div>
-            Whatsapp
-          </Button>
+        <div className="col-md-2">         
+          {this.getWhatsappButton()}
         </div>    
         <div className="col-md-2 visible-xs">
-          <Button
-            className="getLaunchButton"
-            onClick={() => this.props.smsClick(this.props.currentLaunch)}
-            href={this.getSmsPath()}
-            >
-              <div className="text_icon">
-                <MdPhoneAndroid size={32}/>
-              </div>
-              SMS
-          </Button>
+          {this.getSmsButton()}
         </div> 
         <div className="col-md-2">
-          <Button 
-            className="getLaunchButton"
-            onClick={() => this.props.outlookClick(this.props.currentLaunch)}
-            href={this.getOutlookPath()}
-            >
-              <div className="text_icon">
-                <MdEmail size={32}/>
-              </div>
-              דואר אלקטרוני
-          </Button>
+          {this.getOutlookButton()}
         </div>  
         <div className="col-md-2 visible-lg">
-          <Button 
-            className="getLaunchButton"
-            onClick={() => this.props.gmailClick(this.props.currentLaunch)}
-            href={this.getGmailPath()}>
-            <div className="text_icon">
-              <FaGoogle size={32}/>
-            </div>
-            GMAIL
-          </Button>
+          {this.getGmailButton()}
         </div>   
       </div>
     )

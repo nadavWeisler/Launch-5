@@ -10,6 +10,8 @@ import Dashborad from './components/Dashborad';
 import LaunchNew from './components/Launches//LaunchNew'
 import './index.css';
 
+import Popup from 'react-popup';
+
 // Renders the diffrent routes- being renderd by index.js
 
 class AppRouter extends Component {
@@ -21,7 +23,7 @@ class AppRouter extends Component {
         return (
             <BrowserRouter>
             <div style={{fontFamily:'Assistant'}}>
-                <Header/>   
+                <Header/>  
                 <div dir="rtl" style = {{margin: '20px 0'}}>
                 <Switch style={{textAlign:'center'}}>
                     <Route path="/" component= {Home} exact={true} />
@@ -35,7 +37,8 @@ class AppRouter extends Component {
                 </div>
             </div>
             </BrowserRouter>
-        )};
+        )
+    };
 }
 
 export default connect(null, actions)(AppRouter);

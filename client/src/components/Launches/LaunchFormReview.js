@@ -23,7 +23,8 @@ const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
             <Button bsSize="large" className="navbar-custom" onClick={onCancel}>
                 אחורה
             </Button>
-            <Button bsSize="large" className="navbar-custom" onClick={() => submitLaunch(formValues, history)}>
+            <Button bsSize="large" className="navbar-custom"
+                 onClick={() => submitLaunch(formValues, history)}>
                 שלח שיגור
             </Button>
         </div>
@@ -31,7 +32,10 @@ const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
 };
 
 function mapStateToProps(state){
-    return { formValues: state.form.launchForm.values }
+    return { 
+        formValues: state.form.launchForm.values,
+        showAlert: false
+    }
 }
 
 export default connect(mapStateToProps, actions)(withRouter(LaunchFormReview));

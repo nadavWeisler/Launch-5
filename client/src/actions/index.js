@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Alert from '../components/Alertes'
+
 import {FETCH_USER, FETCH_LAUNCHES, FETCH_CURRENT_LAUNC} from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -16,6 +18,7 @@ export const submitLaunch = (values, history) => async dispatch => {
         const res = await axios.post('/api/launch', values);
         history.push('/');
         dispatch({type: FETCH_USER, payload: res.data});
+        alert('Launch has created');
     }
     catch(error){
         alert('Submit failed, please check that your launch name is uniqe');
