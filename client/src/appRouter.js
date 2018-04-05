@@ -3,14 +3,13 @@ import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as actions from './actions';
 import PageNotFound from './components/pageNotFound';
-import GetLaunch from './components/GetLaunch';
+import GetLaunch from './components/GetLaunch/GetLaunch';
 import Home from './components/Home';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import Dashborad from './components/Dashborad';
 import LaunchNew from './components/Launches//LaunchNew'
+//import Footer from './components/Footer/Footer';
 import './index.css';
-
-import Popup from 'react-popup';
 
 // Renders the diffrent routes- being renderd by index.js
 

@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Alert from '../components/Alertes'
 
 import {FETCH_USER, FETCH_LAUNCHES, FETCH_CURRENT_LAUNC} from './types';
 

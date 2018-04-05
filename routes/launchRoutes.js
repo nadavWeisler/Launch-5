@@ -21,9 +21,12 @@ module.exports = function(app) {
         var launch = new Launch();
         launch.name = req.body.name;
         launch.smsPath = CreateMessage.CreateSms(req.body.phoneNumber, getProperText(req.body.textBody));
-        launch.whatsappPath = CreateMessage.CreateWhatsapp(getWhatsAppPhone(req.body.phoneNumber), getProperText(req.body.textBody));
-        launch.gmailPath = CreateMessage.CreateGmail(req.body.emailSender, getProperText(req.body.emailSubject), getProperText(req.body.emailBody));
-        launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, req.body.emailBcc,  req.body.emailCc, getProperText(req.body.emailSubject), getProperText(req.body.emailBody));
+        launch.whatsappPath = CreateMessage.CreateWhatsapp(getWhatsAppPhone(req.body.phoneNumber),
+             getProperText(req.body.textBody));
+        launch.gmailPath = CreateMessage.CreateGmail(req.body.emailSender, getProperText(req.body.emailSubject),
+             getProperText(req.body.emailBody));
+        launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, (req.body.emailBcc || ''),  (req.body.emailCc || ''),
+             getProperText(req.body.emailSubject), getProperText(req.body.emailBody));
         launch._user = req.user.id;
         launch.startDate = Date.now();
         launch.desc = req.body.desc;

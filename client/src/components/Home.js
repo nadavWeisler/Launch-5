@@ -59,7 +59,7 @@ class Home extends Component {
             </div>
             <div className="col-md-2">
               <div>
-                <h2><FaInfoCircle/></h2>
+                <h2><FaInfoCircle color="#5F4B8B"/></h2>
                 <h4><strong>{HomeText.whatIsALaunchQ}</strong></h4>
                 <p>
                   {HomeText.whatIsALaunchA}
@@ -68,7 +68,7 @@ class Home extends Component {
             </div>
             <div className="col-md-2">
               <div>
-                <h2><MdFlashOn/> </h2>
+                <h2><MdFlashOn color="#5F4B8B"/> </h2>
                 <h4><strong>{HomeText.speedQ}</strong></h4>
                 <p> 
                   {HomeText.speedA}
@@ -78,7 +78,7 @@ class Home extends Component {
 
             <div className="col-md-2">
               <div>
-                <h2><FaGroup/></h2>
+                <h2><FaGroup color="#5F4B8B"/></h2>
                 <h4><strong>{HomeText.socialQ}</strong></h4>
                 <p>
                   {HomeText.socialA}

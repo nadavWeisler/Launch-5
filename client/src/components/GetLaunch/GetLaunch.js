@@ -4,7 +4,8 @@ import {Button} from 'react-bootstrap';
 import {FaWhatsapp, FaGoogle} from 'react-icons/lib/fa';
 import {MdEmail, MdPhoneAndroid} from 'react-icons/lib/md';
 import {Grid, Row} from 'react-bootstrap';
-import * as actions from './../actions';
+import * as actions from './../../actions';
+import './GetLaunch.css';
 
 class GetLaunch extends Component {
   
@@ -56,7 +57,7 @@ class GetLaunch extends Component {
         href={this.getWhatsappPath()}
       >
         <div className="text_icon">
-          <FaWhatsapp size={32}/>
+          <FaWhatsapp color="#25D366" size={32}/>
         </div>
         Whatsapp
     </Button>
@@ -86,24 +87,25 @@ class GetLaunch extends Component {
       href={this.getOutlookPath()}
       >
         <div className="text_icon">
-          <MdEmail size={32}/>
+          <MdEmail color="#3e65cf" size={32}/>
         </div>
         דואר אלקטרוני
     </Button>);
   }
 
   getGmailButton(){
-    return (<Button 
-      className="getLaunchButton"
-      onClick={() => this.props.gmailClick(this.props.currentLaunch)}
-      href={this.getGmailPath()}>
-      <div className="text_icon">
-        <FaGoogle size={32}/>
-      </div>
-      GMAIL
-    </Button>);
+    return (
+      <Button 
+        className="getLaunchButton"
+        onClick={() => this.props.gmailClick(this.props.currentLaunch)}
+        href={this.getGmailPath()}>
+        <div className="text_icon">
+          <FaGoogle color="#c71610" size={32}/>
+        </div>
+        GMAIL
+      </Button>
+    );
   }
-
   buttonsRow(){
     return (
       <div> 

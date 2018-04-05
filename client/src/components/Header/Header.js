@@ -3,8 +3,32 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer, IndexLinkContainer  } from "react-router-bootstrap";
+import './Header.css';
 
 class Header extends Component {
+  connectedHeader(){
+    return (
+      [<IndexLinkContainer to="/">
+      <NavItem>
+          <font>דף הבית</font>
+      </NavItem>
+    </IndexLinkContainer>,
+    <IndexLinkContainer to="/dashborad">
+      <NavItem>
+          <font color="white">השיגורים שלי</font>
+      </NavItem>
+    </IndexLinkContainer>,
+    <IndexLinkContainer to="/create">
+      <NavItem>
+          <font color="white"> צור שיגור</font>
+      </NavItem>
+    </IndexLinkContainer>,
+    <NavItem href='/api/logout'>
+      <font color="white">התנתק</font>
+    </NavItem>
+      ]);
+  }
+  
   renderContent(){
     switch(this.props.auth){
       case null:
@@ -14,28 +38,14 @@ class Header extends Component {
           </NavItem>);
       case false:
         return (
-          <NavItem 
-            href='/auth/google'>
-            <font color="white">התחבר בעזרת גוגל</font>
+          <NavItem href='/auth/google'>
+            <button href='/auth/google' class="loginBtn loginBtn--google">
+              Login with Google
+            </button>
           </NavItem>
         )
       default:
-        return (
-          [
-        <IndexLinkContainer to="/dashborad">
-          <NavItem>
-              <font color="white">השיגורים שלי</font>
-          </NavItem>
-        </IndexLinkContainer>,
-        <LinkContainer to="/create">
-          <NavItem>
-              <font color="white"> צור שיגור</font>
-          </NavItem>
-        </LinkContainer>,
-        <NavItem href='/api/logout'>
-          <font color="white">התנתק</font>
-        </NavItem>
-          ]);
+        return this.connectedHeader();
     }
   }
 
