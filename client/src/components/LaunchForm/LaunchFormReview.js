@@ -5,13 +5,22 @@ import _ from 'lodash';
 import * as actions from '../../actions';
 import {withRouter} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
+import './LaunchForm.css';
+
+function getDisplayText(text){
+    if(text){
+        return text.replace("\n", "<br/>");
+    } else {
+        return text;
+    }
+}
 
 const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
     const reviewFields = _.map(formFields, field => {
         return (
             <div>
                 <label key={field.label}>{field.label}</label>
-                <div>{formValues[field.name] || '-'}</div>
+                <p>{formValues[field.name] || '-'}</p>
             </div>
         );
     });

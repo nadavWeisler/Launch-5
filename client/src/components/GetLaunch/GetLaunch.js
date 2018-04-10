@@ -5,7 +5,7 @@ import {FaWhatsapp, FaGoogle} from 'react-icons/lib/fa';
 import {MdEmail, MdPhoneAndroid} from 'react-icons/lib/md';
 import {Grid, Row} from 'react-bootstrap';
 import * as actions from './../../actions';
-import './GetLaunch.css';
+import createLinks from '../../utils/createLinks';
 
 class GetLaunch extends Component {
   
@@ -24,7 +24,7 @@ class GetLaunch extends Component {
 
   getSmsPath(){
     if(this.props.currentLaunch){
-      return this.props.currentLaunch.smsPath
+      return createLinks.CreateSms(this.props.currentLaunch.phones, this.props.currentLaunch.messageBody);
     }
     else {
       return '';
@@ -42,8 +42,14 @@ class GetLaunch extends Component {
   
   getOutlookPath(){
     if(this.props.currentLaunch){
-      return this.props.currentLaunch.outlookPath;
+      return createLinks.CreateEmail(
+        this.props.currentLaunch.emails,
+        this.props.currentLaunch.emailsCC || '',
+        this.props.currentLaunch.emailsBCC || '',
+        this.props.currentLaunch.emailSubject,
+        this.props.currentLaunch.emailBody)
     }
+
     else {
       return '';
     }

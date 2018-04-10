@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LaunchList from './Launches/LaunchList';
+import LaunchList from './LaunchList';
 
 class Dashborad extends Component {
     render() {

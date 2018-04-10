@@ -6,7 +6,6 @@ export default ({ input, label, type, text, componentClass,  meta: { error, touc
     <div>
       <FormGroup>
         <ControlLabel>{label}</ControlLabel>
-        <HelpBlock>{text}</HelpBlock>
         <FormControl 
           onChange={input.onChange} 
           value={input.value} 

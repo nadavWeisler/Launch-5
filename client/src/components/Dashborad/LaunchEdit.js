@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {reduxForm, Field} from 'redux-form';
-import LaunchField from './LaunchField';
+import EditLaunchField from './EditLaunchField';
 import _ from 'lodash';
-import { NavLink } from 'react-router-dom';
 import validateEmails from '../../utils/validateEmail';
-import formFields from './formFields';
 import validatePhone from '../../utils/validatePhone';
 import {Button} from 'react-bootstrap';
 import Modal from 'react-modal';
@@ -28,7 +26,7 @@ class LaunchEdit extends Component {
           <div>
             <Field     
               key={name}
-              component={LaunchField}
+              component={EditLaunchField}
               type={type}
               label={label}
               name={name}
@@ -92,29 +90,13 @@ function mapStateToProps(state){
 function validate(values) {
   const errors = {};
   
-  _.each(formFields, ({ name }) => {
+  _.each(editFields, ({ name }) => {
     if (!values[name] && 
         name !== 'emailBcc' &&
         name !== 'emailCc') {
       errors[name] = 'ערך זה אינו יכול להיות ריק';
     }
   });
-
-  if (!validateEmails(values['emailSender'])){
-    errors['emailSender'] = 'דואר אלקטרוני לא תקין';
-  }
-
-  if (!validateEmails(values['emailBcc']) && values['emailBcc']){
-    errors['emailBcc'] = 'דואר אלקטרוני לא תקין';
-  }
-
-  if (!validateEmails(values['emailCc']) && values['emailCc']){
-    errors['emailCc'] = 'דואר אלקטרוני לא תקין';
-  }
-
-  if (!validatePhone(values['phoneNumber'])){
-      errors['phoneNumber'] = 'מספר נייד לא תקין';
-  }
 
   return errors;
 }

@@ -29,7 +29,14 @@ module.exports = function(app) {
         launch.startDate = Date.now();
 
         launch.phones.push(req.body.phoneNumber);
-        launch.emails.push(req.body.emails);
+        launch.emails.push(req.body.emailSender);
+        if(req.body.emailCc){
+            launch.emailsCC.push(req.body.emailCc);
+        }
+        if(req.body.emailBcc){
+            launch.emailBCC.push(req.body.emailBcc);
+        }
+        
 
         launch.smsPath = CreateMessage.CreateSms(req.body.phoneNumber, getProperText(req.body.textBody));
         launch.whatsappPath = CreateMessage.CreateWhatsapp(getWhatsAppPhone(req.body.phoneNumber),

@@ -6,10 +6,9 @@ import PageNotFound from './components/pageNotFound';
 import GetLaunch from './components/GetLaunch/GetLaunch';
 import Home from './components/Home';
 import Header from './components/Header/Header';
-import Dashborad from './components/Dashborad';
-import LaunchNew from './components/Launches//LaunchNew'
+import Dashborad from './components/Dashborad/Dashborad';
+import LaunchNew from './components/LaunchForm/LaunchNew'
 import LaunchRecipient from './components/LaunchRecipients/LaunchRecipient';
-import LaunchEdit from './components/Launches/LaunchEdit';
 //import Footer from './components/Footer/Footer';
 import './index.css';
 
@@ -33,7 +32,6 @@ class AppRouter extends Component {
                     <Route path="/dashborad" component= {Dashborad} exact={true} />
                     <Route path="/getLaunch/:launchId" component={GetLaunch} exact={true} />
                     <Route path="/recipient/:launchId" component={LaunchRecipient} exact={true}/>
-                    <Route path="/edit/:launchId" component={LaunchEdit} exact={true}/>
                     <Route path="/launchNotFound" component={PageNotFound} exact={true}/>
                     <Route component = {PageNotFound} />  
                 </Switch>

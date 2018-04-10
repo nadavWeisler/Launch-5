@@ -36,7 +36,6 @@ class LaunchList extends Component {
                 <Panel.Heading>
                     <Panel.Title>
                         <a href={'/getLaunch/' + launch._id}>{launch.name}, {launch.desc}</a>
-                        
                     </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body>
@@ -49,7 +48,7 @@ class LaunchList extends Component {
                         bsSize="small"
                         bsStyle="danger"
                         onClick={() => this.props.removeLaunchAndGetOthers(launch)}>
-                        מחק שיגור
+                        מחק
                     </Button>
                     <Button
                         onClick= {() => this.doEdit(launch._id)}
