@@ -19,7 +19,18 @@ module.exports = function(app) {
     app.post('/api/launch', requireLogin, async (req, res) => {
         console.log("post launch - start");
         var launch = new Launch();
+        
         launch.name = req.body.name;
+        launch.desc = req.body.desc;
+        launch.messageBody = req.body.textBody;
+        launch.emailSubject = req.body.emailSubject;
+        launch.emailBody = req.body.emailBody;
+        launch._user = req.user.id;
+        launch.startDate = Date.now();
+
+        launch.phones.push(req.body.phoneNumber);
+        launch.emails.push(req.body.emails);
+
         launch.smsPath = CreateMessage.CreateSms(req.body.phoneNumber, getProperText(req.body.textBody));
         launch.whatsappPath = CreateMessage.CreateWhatsapp(getWhatsAppPhone(req.body.phoneNumber),
              getProperText(req.body.textBody));
@@ -27,9 +38,8 @@ module.exports = function(app) {
              getProperText(req.body.emailBody));
         launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, (req.body.emailBcc || ''),  (req.body.emailCc || ''),
              getProperText(req.body.emailSubject), getProperText(req.body.emailBody));
-        launch._user = req.user.id;
-        launch.startDate = Date.now();
-        launch.desc = req.body.desc;
+
+        
         console.log('finish get data');
         const existingLaunches = await Launch.find({name: launch.name, _user: launch._user});
         if (existingLaunches.length != 0) {
@@ -47,19 +57,38 @@ module.exports = function(app) {
             }
         }
     });
-    
+
+    app.post('/api/editLaunch', requireLogin, async (req, res) => {
+        var launch = await Launch.findById(req.body.launchId);
+        
+        if(!launch){
+            res.status(409).send('Launch has not found');
+        } else {
+            console.log(launch);
+            launch.desc = req.body.desc;
+            launch.messageBody = req.body.textBody;
+            launch.emailSubject = req.body.emailSubject;
+            launch.emailBody = req.body.emailBody;
+            launch.save();
+        }   
+    });
+
     app.get('/api/launch', requireLogin ,async (req, res) => {
-        console.log("start get /api/launch");
-        let userLaunches = await Launch.find({_user: req.user.id});
-        for(var i = 0; i < userLaunches.length; i++){
-            if((Date.now() - userLaunches[i].startDate.getTime()) >  172800000){
-                console.log("all launch delete Launch");
-                const removedUser = await Launch.findOneAndRemove({name: userLaunches[i].name, _user: userLaunches[i]._user});
-                userLaunches.splice(i, 1);
-            }
-        }
+        let userLaunches = await Launch.find({_user: req.user.id});       
+        res.send(userLaunches).status(200);    
+    });
+
+    app.get('/api/updateTexts', requireLogin ,async (req, res) => {
+        let launch = await Launch.findById({_user: req.body.id});   
         
         res.send(userLaunches).status(200);    
+    });
+
+    app.post('/api/deleteLaunchAndGetOther', async (req, res) => {
+        let launch = await Launch.remove({_id: req.body._id});
+        console.log("deleted");
+        let userLaunches = await Launch.find({_user: req.user.id});       
+        res.send(userLaunches).status(200);   
     });
 
     app.post('/api/whatsAppClick', async (req, res) => {
@@ -83,6 +112,7 @@ module.exports = function(app) {
         res.status(200).send(newLaunch);
     });
 
+    
     app.post('/api/gmailClick', async (req, res) => {
         let launch = await Launch.findById(req.body._id);
         launch.gmailCount = launch.gmailCount + 1;
@@ -91,18 +121,11 @@ module.exports = function(app) {
     });
 
     app.get('/api/launch/:launchId', async (req, res) => {
-        console.log("server - getLaunch");
         let launch = await Launch.findById(req.params.launchId);
         if(!launch){
             res.status(404).send("Launch does not exist");
         } else {
-            if((Date.now() - launch.startDate.getTime()) >  172800000) {
-                const removedLaunch = await Launch.findOneAndRemove({name: launch.name, _user: launch._user});
-                res.status(404).send("Launch does not exist");
-            }
-            else {
-                res.status(200).send(launch)
-            }
+            res.status(200).send(launch)
         } 
     });
 };

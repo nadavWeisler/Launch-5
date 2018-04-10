@@ -175,7 +175,6 @@ class GetLaunch extends Component {
 }
 
 function mapStateToProps(state){
-    console.log(state);
     return {currentLaunch: state.currentLaunch}
 }
 

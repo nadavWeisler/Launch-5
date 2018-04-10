@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const mongoose = require('mongoose');
 const keys = require('../config/keys');
 
@@ -35,3 +36,17 @@ passport.use(
     }
   )
 );
+
+passport.use(new FacebookStrategy(
+  {
+    clientID: keys.FACEBOOK_APP_ID,
+    clientSecret: keys.FACEBOOK_APP_SECRET,
+    callbackURL: "/auth/facebook/callback",
+    proxy: true
+  },
+function(accessToken, refreshToken, profile, cb) {
+  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
+    return cb(err, user);
+  });
+}
+));

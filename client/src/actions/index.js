@@ -24,6 +24,15 @@ export const submitLaunch = (values, history) => async dispatch => {
     }
 };
 
+export const editLaunch = (values) => async dispatch => {
+    const res = await axios.post('/api/editLaunch', values);
+};
+
+export const removeLaunchAndGetOthers = (launch) => async dispatch =>{
+    const res = await axios.post('/api/deleteLaunchAndGetOther', launch);
+    dispatch({type: FETCH_LAUNCHES, payload: res.data});
+};
+
 export const whatsAppClick = (launch) => async dispatch => {
     try {
         console.log("WhastappClick");
@@ -70,7 +79,6 @@ export const fetchLaunches = () => async dispatch => {
 };
 
 export const fetchCurrentLaunch = (launchId) => async(dispatch) => {
-    console.log('FetchLaunch');
     try {  
         const res = await axios.get('/api/launch/' + launchId);
         dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});

@@ -17,7 +17,14 @@ var LaunchSchema = new mongoose.Schema({
     whatsappPath: String,
     whatsappCount: {type: Number, default: 0},
     _user: {type: Schema.Types.ObjectId, ref: 'User'},
-    desc: String
+    desc: String,
+    messageBody: String,
+    emailSubject: String,
+    emailBody: String,
+    phones: [],
+    emails: [],
+    emailsCC: [],
+    emailsBCC: []
 });
 
 LaunchSchema.methods.GetLaunchListAsString = (lst, cb) => {

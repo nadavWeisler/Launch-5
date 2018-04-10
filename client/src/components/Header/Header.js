@@ -1,32 +1,32 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {Nav, Navbar, NavItem } from 'react-bootstrap';
-import { LinkContainer, IndexLinkContainer  } from "react-router-bootstrap";
 import './Header.css';
 
 class Header extends Component {
   connectedHeader(){
     return (
-      [<IndexLinkContainer to="/">
+      [
       <NavItem>
-          <font>דף הבית</font>
-      </NavItem>
-    </IndexLinkContainer>,
-    <IndexLinkContainer to="/dashborad">
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <font color="white">דף הבית</font>
+        </Link>
+      </NavItem>,
       <NavItem>
+        <Link to="/dashborad" style={{ textDecoration: 'none' }}>
           <font color="white">השיגורים שלי</font>
-      </NavItem>
-    </IndexLinkContainer>,
-    <IndexLinkContainer to="/create">
+        </Link>
+      </NavItem>,
       <NavItem>
+        <Link to='/create' style={{ textDecoration: 'none' }}>
           <font color="white"> צור שיגור</font>
+        </Link>
+      </NavItem>,
+      <NavItem href='/api/logout'>
+        <font color="white">התנתק</font>
       </NavItem>
-    </IndexLinkContainer>,
-    <NavItem href='/api/logout'>
-      <font color="white">התנתק</font>
-    </NavItem>
-      ]);
+    ]);
   }
   
   renderContent(){
@@ -37,12 +37,17 @@ class Header extends Component {
             <font color="white">מתחבר</font>
           </NavItem>);
       case false:
-        return (
+        return ([
+          // <NavItem href='/auth/facebook'>
+          //   <button href='/auth/facebook' class="loginBtn loginBtn--facebook">
+          //     Login with Facebook
+          //   </button>
+          // </NavItem>,
           <NavItem href='/auth/google'>
             <button href='/auth/google' class="loginBtn loginBtn--google">
               Login with Google
             </button>
-          </NavItem>
+          </NavItem>]
         )
       default:
         return this.connectedHeader();
@@ -55,9 +60,9 @@ class Header extends Component {
       <Navbar className="navbar navbar-custom">
         <Navbar.Header>
           <Navbar.Brand>
-            <NavLink to='/' className='white' style={{display: 'block', height: '100%', color:"#FFFFFF"}}>
+            <Link to='/' className='white' style={{color:"#FFFFFF"}}>
               Launch5
-            </NavLink>
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

@@ -13,18 +13,27 @@ class Home extends Component {
     switch(this.props.auth){
       case null:
       return(
-        <Button bsSize="large" href='/auth/google' className="navbar-custom">
+        <Button 
+          bsSize="large" 
+          href='/auth/google' 
+          className="navbar-custom">
           התחבר בעזרת גוגל
         </Button>)
       case false:
         return (
-          <Button bsSize="large" href='/auth/google' className="navbar-custom">
+          <Button 
+            bsSize="large" 
+            href='/auth/google'
+             className="navbar-custom">
             התחבר בעזרת גוגל
           </Button>
         )
       default:
         return (
-              <Link to="/create" className="btn-lg navbar-custom" style={{width: '200px', color:"#FFFFFF"}}>
+              <Link 
+                to="/create" 
+                className="btn-lg navbar-custom"
+                 style={{width: '200px', color:"#FFFFFF", textDecoration: 'none'}}>
                   צור שיגור
               </Link>)
       
