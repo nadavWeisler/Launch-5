@@ -7,14 +7,6 @@ import {withRouter} from 'react-router-dom';
 import {Button} from 'react-bootstrap';
 import './LaunchForm.css';
 
-function getDisplayText(text){
-    if(text){
-        return text.replace("\n", "<br/>");
-    } else {
-        return text;
-    }
-}
-
 const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
     const reviewFields = _.map(formFields, field => {
         return (
@@ -32,7 +24,7 @@ const LaunchFormReview = ({onCancel, formValues, submitLaunch, history}) => {
             <Button bsSize="large" className="navbar-custom" onClick={onCancel}>
                 אחורה
             </Button>
-            <Button bsSize="large" className="navbar-custom"
+            <Button bsSize="large" className="pull-left navbar-custom"
                  onClick={() => submitLaunch(formValues, history)}>
                 שלח שיגור
             </Button>

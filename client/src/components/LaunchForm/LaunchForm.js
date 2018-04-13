@@ -36,7 +36,7 @@ class LaunchForm extends Component {
                   בטל
                 </NavLink>
               </Button>  
-              <Button bsSize="large" type="submit" className="navbar-custom" >
+              <Button bsSize="large" type="submit" className="pull-left navbar-custom" >
                 הבא
               </Button>         
           </form>

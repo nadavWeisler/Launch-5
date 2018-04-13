@@ -25,7 +25,7 @@ export const submitLaunch = (values, history) => async dispatch => {
 };
 
 export const editLaunch = (values) => async dispatch => {
-    const res = await axios.post('/api/editLaunch', values);
+    await axios.post('/api/editLaunch', values);
 };
 
 export const removeLaunchAndGetOthers = (launch) => async dispatch =>{
@@ -35,17 +35,16 @@ export const removeLaunchAndGetOthers = (launch) => async dispatch =>{
 
 export const whatsAppClick = (launch) => async dispatch => {
     try {
-        console.log("WhastappClick");
+        console.log(launch);
         await axios.post('/api/whatsAppClick', launch);
     }
     catch(error){
-        console.log(error);
+        console.log("ERROR: " + error);
     }
 };
 
 export const smsClick = (launch) => async dispatch => {
     try {
-        console.log("smsClick");
         await axios.post('/api/smsClick', launch);
     }
     catch(error){
@@ -55,7 +54,6 @@ export const smsClick = (launch) => async dispatch => {
 
 export const outlookClick = (launch) => async dispatch => {
     try {
-        console.log("outlookClick");
         await axios.post('/api/outlookClick', launch);
     }
     catch(error){
@@ -66,6 +64,7 @@ export const outlookClick = (launch) => async dispatch => {
 export const gmailClick = (launch) => async dispatch => {
     try {
         console.log("gmailClick");
+        console.log("launch");
         await axios.post('/api/gmailClick', launch);
     }
     catch(error){

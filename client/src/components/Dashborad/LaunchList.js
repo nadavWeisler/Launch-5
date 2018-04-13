@@ -3,31 +3,40 @@ import { connect } from 'react-redux';
 import { fetchLaunches, removeLaunchAndGetOthers } from '../../actions';
 import { Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import {Button} from 'react-bootstrap';
+import {Button, ButtonGroup} from 'react-bootstrap';
 import LaunchEdit from './LaunchEdit';
+import LaunchRecipients from './../LaunchRecipients/LaunchRecipient';
 
 class LaunchList extends Component {
     componentDidMount() {
         this.props.fetchLaunches();
     }
-
-    componentDidUpdate(){
-        this.props.fetchLaunches();
-    }
     
     state = {
-        launchId: undefined
+        launchId: undefined,
+        emailLaunchId: undefined
     };
 
     handleClearEdit = () => {
         this.setState(() => ({ launchId: undefined }));
     }
 
+    handleClearEmails = () => {
+        this.setState(() => ({ emailsLaunchId: undefined }));
+    }
+
     doEdit(launchId) {
-        console.log(this.state);
-        console.log(launchId);
         this.setState(() => ({ launchId}));
-        console.log(this.state);
+    }
+
+    doEmails(emailsLaunchId){
+        this.setState(() => ({ emailsLaunchId}));
+    }
+
+    doRemove(launch){
+        if (window.confirm("למחוק את שיגור " + launch.name + "?")){
+            this.props.removeLaunchAndGetOthers(launch)
+        }
     }
 
     oneLaunchPanel(launch) {
@@ -43,20 +52,25 @@ class LaunchList extends Component {
                     <h5> הודעת טקסט: {launch.smsCount}</h5>
                     <h5> דואר אלקטרוני: {launch.outlookCount}</h5>
                     <h5> ג'ימייל: {launch.gmailCount}</h5>
-                    <Button
-                        className="pull-left"
-                        bsSize="small"
-                        bsStyle="danger"
-                        onClick={() => this.props.removeLaunchAndGetOthers(launch)}>
-                        מחק
-                    </Button>
-                    <Button
-                        onClick= {() => this.doEdit(launch._id)}
-                        bsSize="small"
-                        bsStyle="info"
-                        className="pull-left">
-                        ערוך
-                    </Button>
+                    <ButtonGroup className="pull-left">
+                        <Button
+                            bsStyle="danger"
+                            onClick={() => this.doRemove(launch)}>
+                            מחק
+                        </Button>
+                        <Button
+                            onClick= {() => this.doEdit(launch._id)}
+                            bsStyle="warning"
+                            >
+                            ערוך
+                        </Button>
+                        {/* <Button
+                            onClick= {() => this.doEmails(launch._id)}
+                            bsStyle="info"
+                            >
+                            עדכן כתובות מייל
+                        </Button> */}
+                    </ButtonGroup>
                 </Panel.Body>
                 <Panel.Footer>
                 </Panel.Footer>
@@ -120,6 +134,10 @@ class LaunchList extends Component {
                     launchId={this.state.launchId}
                     handleClearEdit={this.handleClearEdit}
                 />
+                {/* <LaunchRecipients
+                    emailsLaunchId={this.state.emailsLaunchId}
+                    handleClearEmails={this.handleClearEmails}
+                /> */}
             </div>
         )};
 };

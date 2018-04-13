@@ -1,12 +1,12 @@
 import React from 'react';
-import {FormGroup, ControlLabel,  FormControl, HelpBlock} from 'react-bootstrap'
+import {FormGroup, ControlLabel,  FormControl} from 'react-bootstrap'
 
 export default ({ input, label, type, text, componentClass,  meta: { error, touched } }) => {
   return (
     <div>
       <FormGroup>
         <ControlLabel>{label}</ControlLabel>
-        <textarea disabled className="form-control rounded-0">{text}</textarea>
+        <textarea readOnly className="form-control rounded-0">{text}</textarea>
         <FormControl 
           onChange={input.onChange} 
           value={input.value} 

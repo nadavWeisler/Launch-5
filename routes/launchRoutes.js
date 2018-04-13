@@ -99,15 +99,16 @@ module.exports = function(app) {
     });
 
     app.post('/api/whatsAppClick', async (req, res) => {
+        console.log("whatsapp click");
         let launch = await Launch.findById(req.body._id);
-        launch.whatsappCount = launch.whatsappCount + 1;
+        launch.whatsappCount = (launch.whatsappCount || 0) + 1;
         var newLaunch = launch.save();
         res.status(200).send(newLaunch);
     });
 
     app.post('/api/smsClick', async (req, res) => {
         let launch = await Launch.findById(req.body._id);
-        launch.smsCount = launch.smsCount + 1;
+        launch.smsCount = (launch.smsCount || 0) + 1;
         var newLaunch = launch.save();
         res.status(200).send(newLaunch);
     });
@@ -121,8 +122,9 @@ module.exports = function(app) {
 
     
     app.post('/api/gmailClick', async (req, res) => {
+        console.log(req.body);
         let launch = await Launch.findById(req.body._id);
-        launch.gmailCount = launch.gmailCount + 1;
+        launch.gmailCount = (launch.gmailCount || 0) + 1;
         var newLaunch = launch.save();
         res.status(200).send(newLaunch);
     });

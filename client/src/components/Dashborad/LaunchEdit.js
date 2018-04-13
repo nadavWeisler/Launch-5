@@ -2,14 +2,11 @@ import React, { Component } from 'react';
 import {reduxForm, Field} from 'redux-form';
 import EditLaunchField from './EditLaunchField';
 import _ from 'lodash';
-import validateEmails from '../../utils/validateEmail';
-import validatePhone from '../../utils/validatePhone';
 import {Button} from 'react-bootstrap';
 import Modal from 'react-modal';
 import * as actions from './../../actions';
 import {connect} from 'react-redux';
 import editFields from './editFields';
-import {withRouter} from 'react-router-dom';
 
 class LaunchEdit extends Component {
   componentDidUpdate() {
@@ -39,19 +36,36 @@ class LaunchEdit extends Component {
   }
 
   sendToEditLaunch(){
-    this.props.editFormValues['launchId'] = this.props.launchId;
-    this.props.editLaunch(this.props.editFormValues);
+    if(this.props.editFormValues){
+      if(Object.keys(this.props.editFormValues).length < 4){
+        alert("לא כל הערכים מלאים")
+      } else {    
+        this.props.editFormValues['launchId'] = this.props.launchId;
+        this.props.editLaunch(this.props.editFormValues);
+        window.location.reload();
+      }
+    } else {
+      alert("לא כל הערכים מלאים")
+    }
   }
 
   renderContent(){
     switch(this.props.currentLaunch){
       case null:
-        return <p>none</p>
+        return <h1>טוען עריכת שיגור</h1>
+
       case false:
-        return <p>false</p>
+        return (
+          <div>
+            <h1>אירעה תקלה, נסי שנית מאוחר יותר</h1>
+            <Button onClick={this.props.handleClearEdit}>יציאה</Button>
+          </div>
+        )
+
       default:
         return (
           <form>
+            <h1>{"עריכת שיגור - " + this.props.currentLaunch.name}</h1>
             {this.renderFields()}
             <Button bsSize="large" className="navbar-custom" onClick={this.props.handleClearEdit}>
                 בטל
@@ -91,9 +105,7 @@ function validate(values) {
   const errors = {};
   
   _.each(editFields, ({ name }) => {
-    if (!values[name] && 
-        name !== 'emailBcc' &&
-        name !== 'emailCc') {
+    if (!values[name]) {
       errors[name] = 'ערך זה אינו יכול להיות ריק';
     }
   });
@@ -104,5 +116,5 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'editLaunchForm',
-    })(connect(mapStateToProps, actions)(withRouter((LaunchEdit))));  
+    })(connect(mapStateToProps, actions)(LaunchEdit));  
     

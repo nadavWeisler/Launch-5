@@ -1,5 +1,5 @@
 import React from 'react';
-import {FormGroup, ControlLabel,  FormControl, HelpBlock} from 'react-bootstrap'
+import {FormGroup, ControlLabel,  FormControl} from 'react-bootstrap'
 
 export default ({ input, label, type, text, componentClass,  meta: { error, touched } }) => {
   return (

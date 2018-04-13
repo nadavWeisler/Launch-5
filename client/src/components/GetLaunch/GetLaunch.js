@@ -15,7 +15,7 @@ class GetLaunch extends Component {
 
   getWhatsappPath(){
     if(this.props.currentLaunch){
-      return this.props.currentLaunch.whatsappPath
+      return createLinks.CreateWhatsapp(this.props.currentLaunch.phones, this.props.currentLaunch.messageBody) 
     }
     else {
       return '';
@@ -33,8 +33,13 @@ class GetLaunch extends Component {
 
   getGmailPath(){
     if(this.props.currentLaunch){
-      return this.props.currentLaunch.gmailPath
-    }
+      return createLinks.CreateGmail(
+        this.props.currentLaunch.emails,
+        this.props.currentLaunch.emailsCC || '',
+        this.props.currentLaunch.emailsBCC || '',
+        this.props.currentLaunch.emailSubject,
+        this.props.currentLaunch.emailBody);
+      }
     else {
       return '';
     }
@@ -55,12 +60,21 @@ class GetLaunch extends Component {
     }
   }
 
+  gmailButtonClick(){
+    this.props.gmailClick(this.props.currentLaunch);
+    window.open(this.getGmailPath());
+  }
+
+  whatsappButtonClick(){
+    this.props.whatsAppClick(this.props.currentLaunch);
+    window.open(this.getWhatsappPath());
+  }
+
   getWhatsappButton(){
     return (
       <Button
         className="getLaunchButton" 
-        onClick={() => this.props.whatsAppClick(this.props.currentLaunch)}
-        href={this.getWhatsappPath()}
+        onClick={() => this.whatsappButtonClick()}
       >
         <div className="text_icon">
           <FaWhatsapp color="#25D366" size={32}/>
@@ -103,8 +117,8 @@ class GetLaunch extends Component {
     return (
       <Button 
         className="getLaunchButton"
-        onClick={() => this.props.gmailClick(this.props.currentLaunch)}
-        href={this.getGmailPath()}>
+        onClick={() => this.gmailButtonClick()}
+        >
         <div className="text_icon">
           <FaGoogle color="#c71610" size={32}/>
         </div>

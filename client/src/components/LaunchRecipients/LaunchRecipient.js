@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCurrentLaunch } from '../../actions';
-import { Panel } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import {Button} from 'react-bootstrap';
 import EmailList from '../LaunchRecipients/EmailsList';
+import Modal from 'react-modal';
 
 class LaunchRecipients extends Component {
-    componentDidMount() {
-        this.props.fetchCurrentLaunch(this.props.match.params.launchId);
+    componentDidUpdate() {
+        this.props.fetchCurrentLaunch(this.props.emailsLaunchId);
     }
 
     getEmails(){
@@ -39,7 +38,7 @@ class LaunchRecipients extends Component {
             default:
                 return (
                     <div>
-                         <h1>ערוך כתובות דואר אלקטרוני</h1>
+                        <h1>ערוך כתובות דואר אלקטרוני</h1>
                         <input/>
                         <Button>הוסף מייל</Button>
                         <label id="errorLabel"></label>
@@ -51,9 +50,18 @@ class LaunchRecipients extends Component {
 
     render() {
         return (
-            <div className='container'>
-                  
+            <Modal 
+                className='container'
+                isOpen={!!this.props.emailsLaunchId}
+                emailsLaunchId={this.props.emailsLaunchId}
+            >
+            <div dir="rtl">
+                {this.renderContent()} 
+                <Button bsSize="large" className="navbar-custom" onClick={this.props.handleClearEmails}>
+                בטל
+            </Button> 
             </div>
+            </Modal>
         )
     }      
 };
