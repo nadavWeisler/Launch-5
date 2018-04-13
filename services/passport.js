@@ -36,17 +36,3 @@ passport.use(
     }
   )
 );
-
-passport.use(new FacebookStrategy(
-  {
-    clientID: keys.FACEBOOK_APP_ID,
-    clientSecret: keys.FACEBOOK_APP_SECRET,
-    callbackURL: "/auth/facebook/callback",
-    proxy: true
-  },
-function(accessToken, refreshToken, profile, cb) {
-  User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-    return cb(err, user);
-  });
-}
-));
