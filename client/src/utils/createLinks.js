@@ -1,13 +1,17 @@
 class CreateLinks {
     static getProperText(text) {
-        var returnText = text.replace(' ', '%20');
-        returnText = returnText.replace('\n', '%0A');
+        var returnText = text;
+        while(returnText.indexOf('\n') !== -1){
+            returnText = returnText.replace('\n', '%0A');
+        }
         return returnText;
     }
 
     static CreateSms(phoneNumbers, text){
         let phones = phoneNumbers.join(';');
+        console.log(text);
         text = this.getProperText(text);
+        console.log(text);
         if(phones){
             return 'sms://' + phones + 
                   '?body=' + text;
@@ -44,8 +48,8 @@ class CreateLinks {
 
             return 'https://mail.google.com/mail/' +
                 '?view=cm&fs=1&to=' + sender +
+                '&cc=' + cc +
                 '&bcc=' + bcc + 
-                '&cc=' + cc + 
                 '&su=' + subject +
                 '&body=' + properbody;
         } else {
@@ -68,7 +72,7 @@ class CreateLinks {
             var properbody = this.getProperText(body);
 
             return 'mailto:' + sender + 
-                '?cc' + cc +
+                '?cc=' + cc +
                 '&bcc=' + bcc +
                 '&Subject=' + subject + 
                 '&body=' + properbody;

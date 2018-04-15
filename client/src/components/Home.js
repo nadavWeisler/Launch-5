@@ -52,9 +52,19 @@ class Home extends Component {
             {HomeText.subTitle}
           </h3>
         </Row>
-        <Row id="motivationTextRow">
+        <Row id="motivationText1Row">
           <h4>
-            {HomeText.motivationText}
+            {HomeText.motivationText1}
+          </h4>
+        </Row>
+        <Row id="motivationText2Row">
+          <h4>
+            {HomeText.motivationText2}
+          </h4>
+        </Row>
+        <Row id="motivationText3Row">
+          <h4>
+            {HomeText.motivationText3}
           </h4>
         </Row>
         <br/>

@@ -5,7 +5,6 @@ import { Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import LaunchEdit from './LaunchEdit';
-import LaunchRecipients from './../LaunchRecipients/LaunchRecipient';
 
 class LaunchList extends Component {
     componentDidMount() {
@@ -77,7 +76,6 @@ class LaunchList extends Component {
             </Panel> 
         );
     }
-
     loadLunchTitle(){
         return (
             <div style={{textAlign:'center'}}>
@@ -88,16 +86,16 @@ class LaunchList extends Component {
 
     noLaunchTitle(){
         return (
-        <div style={{textAlign:'center'}}>
-            <h1>בחשבון זה אין שיגורים פעילים</h1>
-            <br/>
-            <Link to="/create"
-                className="btn-lg navbar-custom"
-                style={{width: '200px', color:"#FFFFFF", textDecoration: 'none'}}>
-                צור שיגור
-            </Link>
-        </div>
-    )
+            <div style={{textAlign:'center'}}>
+                <h1>בחשבון זה אין שיגורים פעילים</h1>
+                <br/>
+                <Link to="/create"
+                    className="btn-lg navbar-custom"
+                    style={{width: '200px', color:"#FFFFFF", textDecoration: 'none'}}>
+                    צור שיגור
+                </Link>
+            </div>
+        )
     }
 
     renderLaunches() {
@@ -128,7 +126,7 @@ class LaunchList extends Component {
 
     render() {
         return (
-            <div>
+            <div className='container'>
                 {this.renderLaunches()}
                 <LaunchEdit
                     launchId={this.state.launchId}

@@ -8,7 +8,6 @@ import * as actions from './../../actions';
 import createLinks from '../../utils/createLinks';
 
 class GetLaunch extends Component {
-  
   componentDidMount() {
     this.props.fetchCurrentLaunch(this.props.match.params.launchId);
   }
@@ -92,7 +91,7 @@ class GetLaunch extends Component {
         href={this.getSmsPath()}
         >
           <div className="text_icon">
-            <MdPhoneAndroid size={32}/>
+            <MdPhoneAndroid color="#c71610" size={32}/>
           </div>
           SMS
       </Button>
@@ -126,6 +125,7 @@ class GetLaunch extends Component {
       </Button>
     );
   }
+
   buttonsRow(){
     return (
       <div> 
@@ -175,7 +175,7 @@ class GetLaunch extends Component {
             <br/>
             <Row id='launchDescRow'>
               <h4>
-                שיגור הוא הודעה מוכנה מראש לנמען שתקבעו ל-48 שעות בלבד  
+                שיגור הוא הודעה מוכנה מראש לנמען קבוע מראש  
               </h4>
             </Row>
             <br/>  
@@ -187,7 +187,7 @@ class GetLaunch extends Component {
 
   render() {
     return (
-      <div style={{textAlign: 'center'}}>
+      <div className='container' style={{textAlign: 'center'}}>
         {this.renderContent()}
       </div>
     );

@@ -17,10 +17,10 @@ export const submitLaunch = (values, history) => async dispatch => {
         const res = await axios.post('/api/launch', values);
         history.push('/');
         dispatch({type: FETCH_USER, payload: res.data});
-        alert('Launch has created');
+        alert('שיגור נוצר בהצלחה');
     }
     catch(error){
-        alert('Submit failed, please check that your launch name is uniqe');
+        alert('יצירת שיגור נכשלה, בדוק אם שיגור בשם זהה קיים');
     }
 };
 
@@ -63,8 +63,6 @@ export const outlookClick = (launch) => async dispatch => {
 
 export const gmailClick = (launch) => async dispatch => {
     try {
-        console.log("gmailClick");
-        console.log("launch");
         await axios.post('/api/gmailClick', launch);
     }
     catch(error){

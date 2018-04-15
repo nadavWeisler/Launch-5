@@ -8,13 +8,9 @@ var LaunchSchema = new mongoose.Schema({
     picture: String, //Launch picture paths
     startDate: Date, //Launch start time
     lastResponse: Date,
-    gmailPath: String,
     gmailCount: {type: Number, default: 0},
-    outlookPath: String,
     outlookCount: {type: Number, default: 0},
-    smsPath: String,
     smsCount: {type: Number, default: 0},
-    whatsappPath: String,
     whatsappCount: {type: Number, default: 0},
     _user: {type: Schema.Types.ObjectId, ref: 'User'},
     desc: String,

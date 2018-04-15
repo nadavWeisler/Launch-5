@@ -30,31 +30,21 @@ module.exports = function(app) {
 
         launch.phones.push(req.body.phoneNumber);
         launch.emails.push(req.body.emailSender);
+        
         if(req.body.emailCc){
             launch.emailsCC.push(req.body.emailCc);
         }
+
         if(req.body.emailBcc){
-            launch.emailBCC.push(req.body.emailBcc);
+            launch.emailsBCC.push(req.body.emailBcc);
         }
-        
-
-        launch.smsPath = CreateMessage.CreateSms(req.body.phoneNumber, getProperText(req.body.textBody));
-        launch.whatsappPath = CreateMessage.CreateWhatsapp(getWhatsAppPhone(req.body.phoneNumber),
-             getProperText(req.body.textBody));
-        launch.gmailPath = CreateMessage.CreateGmail(req.body.emailSender, getProperText(req.body.emailSubject),
-             getProperText(req.body.emailBody));
-        launch.outlookPath = CreateMessage.CreateEmail(req.body.emailSender, (req.body.emailBcc || ''),  (req.body.emailCc || ''),
-             getProperText(req.body.emailSubject), getProperText(req.body.emailBody));
-
-        
+               
         console.log('finish get data');
         const existingLaunches = await Launch.find({name: launch.name, _user: launch._user});
         if (existingLaunches.length != 0) {
-            res.status(409).send('Launch already exist');
-            
+            res.status(409).send('Launch already exist');  
         } else {
             launch.save();
-            //req.user.credits = req.user.credits - 1;
             try {
                 const user = await req.user.save();
                 res.status(200).send(user);
