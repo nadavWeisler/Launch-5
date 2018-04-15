@@ -64,6 +64,11 @@ class GetLaunch extends Component {
     window.open(this.getGmailPath());
   }
 
+  outlookButtonClick(){
+    this.props.outlookClick(this.props.currentLaunch);
+    window.open(this.getOutlookPath());
+  }
+
   whatsappButtonClick(){
     this.props.whatsAppClick(this.props.currentLaunch);
     window.open(this.getWhatsappPath());
@@ -102,7 +107,7 @@ class GetLaunch extends Component {
     return (
     <Button 
       className="getLaunchButton"
-      onClick={() => this.props.outlookClick(this.props.currentLaunch)}
+      onClick={() => this.outlookButtonClick()}
       href={this.getOutlookPath()}
       >
         <div className="text_icon">
