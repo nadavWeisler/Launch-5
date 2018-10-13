@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-import { Panel } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Panel, Button } from 'react-bootstrap';
 // import { Link } from 'react-router-dom';
 // import {Button} from 'react-bootstrap';
+import {MdDelete} from 'react-icons/lib/md';
+import * as actions from './../../actions';
 
 class EmailList extends Component {
+    componentDidUpdate() {
+        if(this.props.emailsLaunchId){
+            this.props.fetchCurrentLaunch(this.props.emailsLaunchId);
+        }
+    }
+
     oneEmailPanel(email) {
         return(
             <Panel>
                 <Panel.Body>
                     {email}
+                    <Button 
+                        className="pull-left"
+                        onClick={() => this.deleteEmail(email)}>
+                        <MdDelete size={24} className="pull-left" color="red"/>
+                    </Button>
                 </Panel.Body>
             </Panel> 
         );
+    }
+
+    deleteEmail(email){
+        this.props.removeEmailToLaunch(email, this.props.emailsLaunchId);
     }
 
     noEmailTitle(){
@@ -32,6 +49,10 @@ class EmailList extends Component {
                     this.noEmailTitle()
                 );
             case false:
+                return (
+                    this.noEmailTitle()
+                );
+            case undefined:
                 return (
                     this.noEmailTitle()
                 );
@@ -58,4 +79,8 @@ class EmailList extends Component {
         )};
 };
 
-export default EmailList;
+function mapStateToProps(state){
+    return {currentLaunch: state.currentLaunch}
+}
+
+export default connect(mapStateToProps, actions)(EmailList);

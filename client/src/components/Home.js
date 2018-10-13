@@ -24,7 +24,7 @@ class Home extends Component {
           <Button 
             bsSize="large" 
             href='/auth/google'
-             className="navbar-custom">
+             className="loginBtn loginBtn--google">
             התחבר בעזרת גוגל
           </Button>
         )

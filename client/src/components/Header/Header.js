@@ -43,10 +43,8 @@ class Header extends Component {
           //     Login with Facebook
           //   </button>
           // </NavItem>,
-          <NavItem href='/auth/google'>
-            <button href='/auth/google' class="loginBtn loginBtn--google">
-              Login with Google
-            </button>
+          <NavItem>
+            {/* <font color="white">שלום אורח</font> */}
           </NavItem>]
         )
       default:

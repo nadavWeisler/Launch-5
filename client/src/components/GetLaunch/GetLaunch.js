@@ -43,7 +43,7 @@ class GetLaunch extends Component {
       return '';
     }
   }
-  
+
   getOutlookPath(){
     if(this.props.currentLaunch){
       return createLinks.CreateEmail(
@@ -96,7 +96,7 @@ class GetLaunch extends Component {
         href={this.getSmsPath()}
         >
           <div className="text_icon">
-            <MdPhoneAndroid color="#c71610" size={32}/>
+            <MdPhoneAndroid color="#FF4500" size={32}/>
           </div>
           SMS
       </Button>
@@ -142,12 +142,12 @@ class GetLaunch extends Component {
         <div className="col-md-2 visible-xs">
           {this.getSmsButton()}
         </div> 
-        <div className="col-md-2">
+        {/* <div className="col-md-2">
           {this.getOutlookButton()}
         </div>  
-        <div className="col-md-2 visible-lg">
+        <div className="col-md-2">
           {this.getGmailButton()}
-        </div>   
+        </div>    */}
       </div>
     )
   }
@@ -169,30 +169,24 @@ class GetLaunch extends Component {
       default:
         return (
           <Grid className="container">
-            <Row id='launchNameRow'>
-              <h1> קיבלת את השיגור: {this.props.currentLaunch.name}</h1>
-            </Row>
             <Row id='launchDescRow'>
-              <h3>
+              <h2>
                 {this.props.currentLaunch.desc} 
-              </h3>
+              </h2>
             </Row>
             <br/>
-            <Row id='launchDescRow'>
-              <h4>
-                שיגור הוא הודעה מוכנה מראש לנמען קבוע מראש  
-              </h4>
-            </Row>
-            <br/>  
-            {this.buttonsRow()}        
+            {this.buttonsRow()}    
           </Grid>
         );
     }
   }
-
-  render() {
+  
+  render(){
     return (
-      <div className='container' style={{textAlign: 'center'}}>
+      <div
+        className='container' 
+        style={{textAlign: 'center'}}
+      >
         {this.renderContent()}
       </div>
     );

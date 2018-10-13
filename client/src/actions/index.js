@@ -7,6 +7,16 @@ export const fetchUser = () => async dispatch => {
         dispatch({type: FETCH_USER, payload: res.data});
 };
 
+export const addEmailToLaunch = (email, launchId) => async dispatch =>{
+    var res = await axios.post('/api/addEmailToLaunch', {email: email, launchId: launchId});
+    dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+};
+
+export const removeEmailToLaunch = (email, launchId) => async dispatch =>{
+    var res = await axios.post('/api/removeEmailToLaunch', {email: email, launchId: launchId});
+    dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+}
+
 export const handleToken = token => async dispatch => {
     const res = await axios.post('/api/stripe', token);
     dispatch({type: FETCH_USER, payload: res.data});
@@ -77,8 +87,10 @@ export const fetchLaunches = () => async dispatch => {
 
 export const fetchCurrentLaunch = (launchId) => async(dispatch) => {
     try {  
-        const res = await axios.get('/api/launch/' + launchId);
-        dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+        if(launchId){
+            const res = await axios.get('/api/launch/' + launchId);
+            dispatch({type: FETCH_CURRENT_LAUNC, payload: res.data});
+        }
     }
     catch(error) {
         console.log(error);

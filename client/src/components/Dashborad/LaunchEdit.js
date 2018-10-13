@@ -16,8 +16,8 @@ class LaunchEdit extends Component {
   renderFields() {
       editFields[0]['text'] = this.props.currentLaunch.desc;
       editFields[1]['text'] = this.props.currentLaunch.messageBody;
-      editFields[2]['text'] = this.props.currentLaunch.emailSubject;
-      editFields[3]['text'] = this.props.currentLaunch.emailBody;
+      //editFields[2]['text'] = this.props.currentLaunch.emailSubject;
+      //editFields[3]['text'] = this.props.currentLaunch.emailBody;
       return _.map(editFields, ({ name, label, type, text, componentClass }) => {
         return (
           <div>
@@ -79,6 +79,7 @@ class LaunchEdit extends Component {
         )
     }
   }
+  
   render() {
     return (
         <Modal

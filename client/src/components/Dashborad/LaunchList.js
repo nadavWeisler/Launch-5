@@ -5,6 +5,7 @@ import { Panel } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import LaunchEdit from './LaunchEdit';
+import LaunchRecipients from './../LaunchRecipients/LaunchRecipient'
 
 class LaunchList extends Component {
     componentDidMount() {
@@ -43,14 +44,14 @@ class LaunchList extends Component {
             <Panel>
                 <Panel.Heading>
                     <Panel.Title>
-                        <a href={'/getLaunch/' + launch._id}>{launch.name}, {launch.desc}</a>
+                        <a href={'/getLaunch/' + launch._id}>{launch.name}</a>
                     </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body>
                     <h5> וואטסאפ: {launch.whatsappCount}</h5>
                     <h5> הודעת טקסט: {launch.smsCount}</h5>
-                    <h5> דואר אלקטרוני: {launch.outlookCount}</h5>
-                    <h5> ג'ימייל: {launch.gmailCount}</h5>
+                    {/* <h5> דואר אלקטרוני: {launch.outlookCount}</h5>
+                    <h5> ג'ימייל: {launch.gmailCount}</h5> */}
                     <ButtonGroup className="pull-left">
                         <Button
                             bsStyle="danger"
@@ -128,14 +129,14 @@ class LaunchList extends Component {
         return (
             <div className='container'>
                 {this.renderLaunches()}
+                <LaunchRecipients
+                    emailsLaunchId={this.state.emailsLaunchId}
+                    handleClearEmails={this.handleClearEmails}
+                /> 
                 <LaunchEdit
                     launchId={this.state.launchId}
                     handleClearEdit={this.handleClearEdit}
                 />
-                {/* <LaunchRecipients
-                    emailsLaunchId={this.state.emailsLaunchId}
-                    handleClearEmails={this.handleClearEmails}
-                /> */}
             </div>
         )};
 };

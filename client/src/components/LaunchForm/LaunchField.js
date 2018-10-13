@@ -5,12 +5,16 @@ export default ({ input, label, type, text, componentClass,  meta: { error, touc
   return (
     <div>
       <FormGroup>
-        <ControlLabel>{label}</ControlLabel>
+        <ControlLabel>
+          {label}
+        </ControlLabel>
         <FormControl 
           onChange={input.onChange} 
           value={input.value} 
           type={type}
-          componentClass={componentClass}/>
+          maxLength="450"
+          componentClass={componentClass}
+        />
       </FormGroup>
       
       <div style={{ marginBottom: '20px', color:"red" }}>

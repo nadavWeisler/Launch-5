@@ -4,16 +4,6 @@ const requireLogin = require('../middlewares/requireLogin');
 const requireCredits = require('../middlewares/requireCredits');
 const CreateMessage = require('../services/createMessage');
 
-function getWhatsAppPhone(phone) {
-    return '972' + phone.substring(1);
-}
-
-function getProperText(text){
-    var returnText = text.replace(' ', '%20');
-    returnText = returnText.replace('\n', '%0A');
-    return returnText;
-}
-
 module.exports = function(app) {
      //Post launch
     app.post('/api/launch', requireLogin, async (req, res) => {
@@ -109,8 +99,7 @@ module.exports = function(app) {
         var newLaunch = launch.save();
         res.status(200).send(newLaunch);
     });
-
-    
+   
     app.post('/api/gmailClick', async (req, res) => {
         console.log(req.body);
         let launch = await Launch.findById(req.body._id);
@@ -126,5 +115,27 @@ module.exports = function(app) {
         } else {
             res.status(200).send(launch)
         } 
+    });
+
+    app.post('/api/addEmailToLaunch', async (req, res) =>{
+        let launch = await Launch.findById(req.body.launchId);
+        if(launch){
+            launch.emails.push(req.body.email);
+        }
+        var newLaunch = launch.save();
+        res.send(newLaunch).status(200);
+    });
+
+    app.post('/api/removeEmailToLaunch', async (req, res) =>{
+        let launch = await Launch.findById(req.body.launchId);
+        if(launch) {
+            let emailIndex = launch.emails.indexOf(req.body.email);
+            console.log(emailIndex);
+            if(emailIndex != -1) {
+                launch.emails.splice(emailIndex, 1);
+                var newLaunch = launch.save();
+                res.send(newLaunch).status(200);
+            }
+        }
     });
 };
