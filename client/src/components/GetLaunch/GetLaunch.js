@@ -134,7 +134,7 @@ class GetLaunch extends Component {
   buttonsRow(){
     return (
       <div> 
-        <div className="col-md-3">
+        <div className="col-md-5">
         </div>
         <div className="col-md-2">         
           {this.getWhatsappButton()}
