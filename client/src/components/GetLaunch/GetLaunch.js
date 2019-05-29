@@ -6,6 +6,7 @@ import {MdEmail, MdPhoneAndroid} from 'react-icons/lib/md';
 import {Grid, Row} from 'react-bootstrap';
 import * as actions from './../../actions';
 import createLinks from '../../utils/createLinks';
+import AdSense from 'react-adsense';
 
 class GetLaunch extends Component {
   componentDidMount() {
@@ -188,6 +189,11 @@ class GetLaunch extends Component {
         style={{textAlign: 'center'}}
       >
         {this.renderContent()}
+        {/* ads with no set-up */}
+        <AdSense.Google
+          client='ca-pub-7292810486004926'
+          slot='7806394673'
+        />
       </div>
     );
   }

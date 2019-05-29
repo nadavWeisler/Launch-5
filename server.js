@@ -15,8 +15,8 @@ const mongoose = require('mongoose');
 mongoose.connect(keys.MONGODB_URI);
 
 //Initilize new express server
-var app = express();
-var server = http.createServer(app);
+let app = express();
+let server = http.createServer(app);
 
 //Use cookies
 app.use(
