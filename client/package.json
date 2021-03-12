@@ -29,7 +29,7 @@
     "react-alert": "^7.0.2",
     "react-alert-es6": "^1.0.0",
     "react-bootstrap": "^0.32.1",
-    "react-dev-utils": "^10.2.1",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.8.6",
     "react-icons": "^2.2.7",
     "react-modal": "^3.3.2",
